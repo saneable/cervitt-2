@@ -1,0 +1,90 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 onboarding-col start_step_center_small">
+                <div class="row row-eq-height">
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-star-o onboarding-icon-sm"></span>
+                                    </div>
+                                    <!--<h4 class="onboarding-item-heading">Company</h4>-->
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12">
+                                <h4 class="onboarding-item-heading">Company</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-folder-open-o onboarding-icon-sm"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12">
+                                <h4 class="onboarding-item-heading">Products</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-id-card-o onboarding-icon-sm"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Personal Details</h4></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-users onboarding-icon-sm"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Connections</h4></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-center onboarding_completed">
+                <h3 class="onboarding-title font36">Well done!</h3>
+                <h4 class="onboarding-title font24 marb20">That's it you are all  setup and ready to share your products</h4> 
+                <h4  ng-hide="individualFlag" class="onboarding-title font24 marb20"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Do you want to switch '{{productNameLive}}' live?</h4> 
+                <h4 ng-hide="individualFlag" class="onboarding-title"><i class="fa fa-external-link" aria-hidden="true"></i> cervitt.co.uk/{{companyUrl}}/{{productUrl}}</h4> 
+            </div>
+        </div> 
+        
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2  text-center mart20">
+                <button class="onboarding-start wid_auto" type="button" value="Go to Dashboard" ng-click="ctrl.gotoDashboard()">Go to dashboard</button>
+            </div>
+        </div>
+    </div>
+</main>

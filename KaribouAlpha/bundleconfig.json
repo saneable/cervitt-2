@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "dashboard_feedback_view.min.html",
+    "inputFiles": [
+      "dashboard_feedback_view.html"
+    ]
+  },
+  {
+    "outputFileName": "app.min.html",
+    "inputFiles": [
+      "app.html"
+    ]
+  }
+]

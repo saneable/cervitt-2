@@ -1,0 +1,70 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row connections-connection-form-row">
+            <div class="col-sm-3 connections-connection-count-col">
+                <p class="connections-connection-count">{{ctrl.companyConnections.length}} connections</p>
+            </div>
+            <div class="col-sm-2 pull-right">
+                <div class="dropdown pull-right connection-sort-selection">
+                    <button class="btn btn-default dropdown-toggle connection-sort-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Recently added
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-1 pull-right connections-connection-sort-col">
+                <p class="connections-connection-sort-label">Sort by</p>
+            </div>
+            <div class="col-sm-2 pull-right connections-search-col">
+                <div class="input-group">
+                    <span class="input-group-addon connections-search-icon">
+                        <i class="fa fa-search connections-search-icon"></i>
+                    </span>
+                    <input ng-model="ctrl.companyConnectionSearchString" type="text" id="searchConenctions" class="form-control connections-search-input-text" placeholder="Search connections" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+        <div class="row connections-main-row">
+            <div class="col-sm-3 connections-links-left">
+                <ul class="connections-links-left">
+                    <li class="connections-link-left"><a class="connections-link-left active" ui-sref="companyConnections">Companies</a></li>
+                    <li class="connections-link-left"><a class="connections-link-left" ui-sref="personalConnections">People</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div ng-repeat="companyConnection in ctrl.companyConnections | filterCompanyConnection:ctrl.companyConnectionSearchString" ui-sref="company({companyId: companyConnection.CompanyID})" style="cursor: pointer;" class="row connections-connection-row">
+                    <div class="col-sm-8 connections-connection-col">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object connections-connection-media-company-logo" src="img/ratherlong.png" alt="Rather Long Company Name Ltd">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading connections-connection-media-heading">{{companyConnection.CompanyDisplayName}}</h4>
+                                <p class="connections-connection-media-body">5 Connections work here</p>
+                                <p ng-show="companyConnection.CompanyProducts.length" class="connections-connection-media-products-header">Products</p>
+                                <ul ng-show="companyConnection.CompanyProducts.length" class="connections-connection-media-products">
+                                    <li ng-repeat="product in companyConnection.CompanyProducts" ui-sref="product({productId: product.ID, companyId: companyConnection.CompanyID})" class="connections-connection-media-product">{{product.Name}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 pull-right connections-connection-products-col">
+                        <p class="connections-connection-products"><span class="badge connections-connection-products-badge">3</span>Products</p>
+                        <p class="connections-connection-updates"><span class="badge connections-connection-updates-badge">1</span>Update since last visit</p>
+                    </div>
+                    <div class="col-sm-1 pull-right connections-connection-icon-col">
+                        <i class="fa fa-sticky-note-o connections-connection-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>

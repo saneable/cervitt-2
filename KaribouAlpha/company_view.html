@@ -1,0 +1,206 @@
+﻿<main>
+    <div class="container-fluid overflow_hide">
+        <div class="row">
+            <div ng-class="feedbackVisible ? 'col-sm-8' : 'col-sm-12'" class="col-sm-12 company-image-col">
+                <div class="company-image-container" style="">
+                    <img class="banner_img" ng-src="{{getCompanyHeaderImage()}}">
+                    <button class="pull-right btn-grn" style="" ng-show="isAdminLevel"  ng-click="GoToEditCompany(ctrl.company.ID)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit page</button>
+                    <div class="row">
+                        <div ng-class="feedbackVisible ? 'col-sm-12 col-sm-offset-0' : 'col-sm-8 col-sm-offset-2'" class="col-sm-8 col-sm-offset-2 company-details-col">
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="company-details-container" ng-style="!ctrl.company.Description && {'opacity':'0.0'}">
+                                        <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getCompanyProfileImage()}}">
+                                        <div class="row account-company-tabs-row">
+                                            <div class="account-company-tabs-col">
+                                                <ul class="nav nav-tabs">
+                                                    <!--<li role="presentation" class="active"><a class="company-profile-tab" ui-sref="myCompany">Products</a></li>-->
+                                                    <li class="dropdown">
+                                                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product <span class="caret"></span></a>
+                                                        <ul class="dropdown-menu">
+                                                            <li ng-show="ctrl.products.length > 0" role="separator" class="divider"></li>
+                                                            <li ng-repeat="product in ctrl.products track by product.ID"><a ui-sref="myProduct({productId: product.ID})">{{product.Name}}</a></li>
+                                                        </ul>
+                                                    </li>
+
+                                                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileNews">News</a></li>
+                                                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileFollowerGroups">Follower groups</a></li>-->
+                                                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileNotifications">Email notifications</a></li>-->
+                                                    <li ng-show="isAdminLevel" role="presentation"><a class="company-profile-tab">Connections</a></li>
+                                                    <li ng-show="isAdminLevel" role="presentation"><a class="company-profile-tab">Team</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="company-details-description">
+                                            {{ctrl.company.Description}}
+                                        </p>
+                                        <div class="row account-company-tabs-row">
+                                            <button class="dashboard-feedback-reply fix_btm" ng-show="ShowMessageButton" style="float:right" ng-click="ShowMessageOption()"><i class="fa fa-comments-o" aria-hidden="true"></i> Send Message</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div ng-show="MessageVisible" class="col-sm-4" style="float:right">
+                <div class="row">
+                    <div class="col-sm-12 dashboard-feedback-reply-col fix_wid_pad">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <span ng-click="HideMessageOption()" class="fa fa-times product-file-feedback-close-icon"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <textarea ng-model="MessageModel.Message" class="dashboard-feedback-reply" placeholder="Feedback"></textarea>
+                                <div ng-if="MessageModel.issubmit && MessageModel.msgerrorr" class="error-class">
+                                    Enter the Message
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="MessageModel.LinkUrl">
+                            <div class="col-sm-12">
+                                <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><a href="http://{{MessageModel.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{MessageModel.LinkUrl}}</a>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="MessageModel.Image">
+                            <div class="col-sm-12">
+                                <img class="image-responsive dashboard-post-image" ng-src="{{ctrl.GetSubbmitedImage()}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 dashboard-feedback-reply-include-icons-col">
+                                <ul flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.MessageImageSubmitted($files, $event, $flow)" class="list-inline dashboard-feedback-reply-include-icons">
+                                    <li><i class="fa fa-link dashboard-feedback-reply-include-icon" ng-click="AddMessageLinkUrl()" uib-popover-template="'MessageLinkUrlPopover.html'" popover-is-open="ctrl.OpenMessagePopupLinkUrl" popover-trigger="'none'" popover-append-to-body="true"></i></li>
+                                    <li><i flow-btn class="fa fa-picture-o dashboard-feedback-reply-include-icon"></i></li>
+                                    <li><i class="fa fa-lock dashboard-feedback-reply-include-icon"></i></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3 dashboard-feedback-reply-button-col">
+                                <button ng-click="SendMessageToCompany()" class="dashboard-feedback-reply" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 dashboard-post-comment-col">
+                        &nbsp;
+                    </div>
+                </div>
+                <div ng-repeat="MessageValue in CompanyMessages" class="row">
+                    <div class="col-sm-10 col-sm-offset-1 dashboard-post-comment-col">
+                        <div class="row">
+                            <div class="com-sm-12">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="javascript:void(0)">
+                                            <img class="media-object img-circle dashboard-post-comment-author-avatar" ng-src="api/GetUserProfileImage?userId={{MessageValue.UserId}}">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading dashboard-post-comment-author-name">{{MessageValue.FirstName}} {{MessageValue.LastName}}</h4>
+                                        <p class="dashboard-post-comment-author-company">{{MessageCompanyName}} {{ctrl.getFeedbackDisplayDate(MessageValue)}}</p>
+                                        <p class="dashboard-post-comment-body">{{MessageValue.Message}}</p>
+                                        <i ng-if="MessageValue.LinkUrl" class="fa fa-link dashboard-post-comment-body-link-icon"></i><a ng-if="MessageValue.LinkUrl" href="http://{{MessageValue.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{MessageValue.LinkUrl}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="MessageValue.Image" class="row">
+                            <div class="col-sm-12">
+                                <img class="image-responsive dashboard-post-image" ng-src="data:image/JPEG;base64, {{MessageValue.Image}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="row" ng-hide="isConnected">
+            <div  ng-if="ctrl.company.PhoneNumber || ctrl.company.Email || ctrl.company.LinkedInUrl || ctrl.company.WebsiteUrl" class="col-sm-2 col-sm-offset-4 company-contact-us-col">
+                <button class="btn btn-default account-personal-details-save">Contact us</button>
+            </div>
+            <div ng-hide="isConnected" class="col-sm-2 company-contact-us-col">
+                <button class="btn btn-default account-personal-details-save" ng-click="ctrl.addConnection()">Connect&nbsp;&nbsp;<i class="fa fa-star-o connect-icon"></i></button>
+            </div>
+        </div>
+
+        <div class="row" ng-show="isConnected">
+            <div ng-if="ctrl.company.PhoneNumber || ctrl.company.Email || ctrl.company.LinkedInUrl || ctrl.company.WebsiteUrl" class="col-sm-2 col-sm-offset-5 company-contact-us-col">
+                <button class="btn btn-default account-personal-details-save">Contact us</button>
+            </div>
+        </div>
+
+                
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 company-contact-details-col">
+                <ul class="list-inline company-contact-details-list">
+                    <li ng-if="ctrl.company.PhoneNumber" class="list-inline-item company-contact-details-item">
+                        <div class="company-contact-details-item-container">
+                            <i class="fa fa-mobile company-contact-details-item-icon-mobile"></i>
+                            <h2 class="company-contact-details-item-heading">
+                                <a href="tel:{{ctrl.company.PhoneNumber}}">Phone</a>
+                            </h2>
+                        </div>
+                    </li>
+                    <li ng-if="ctrl.company.Email" class="list-inline-item company-contact-details-item">
+                        <div class="company-contact-details-item-container">
+                            <i class="fa fa-envelope-o company-contact-details-item-icon"></i>
+                            <h2 class="company-contact-details-item-heading">
+                                <a href="mailto:{{ctrl.company.Email}}">Email</a>
+                            </h2>
+                        </div>
+                    </li>
+                    <li ng-if="ctrl.company.LinkedInUrl" class="list-inline-item company-contact-details-item">
+                        <div class="company-contact-details-item-container">
+                            <i class="fa fa-linkedin company-contact-details-item-icon"></i>
+                            <h2 class="company-contact-details-item-heading">
+                                <a href="http://{{ctrl.company.LinkedInUrl}}">LinkedIn</a>
+                            </h2>
+                        </div>
+                    </li>
+                    <li ng-if="ctrl.company.WebsiteUrl" class="list-inline-item company-contact-details-item">
+                        <div class="company-contact-details-item-container">
+                            <i class="fa fa-desktop company-contact-details-item-icon"></i>
+                            <h2 class="company-contact-details-item-heading">
+                                <a href="http://{{ctrl.company.WebsiteUrl}}">Website</a>
+                            </h2>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="MessageLinkUrlPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="MessageModel.LinkUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.setMessageLinkUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+                <button type="button" ng-click="ctrl.CloseMessageLinkUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Close</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+            </div>
+        </div>
+    </div>
+</script>
+<div ng-if="isSocial">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a526a5a63df5d5c"></script>
+</div>

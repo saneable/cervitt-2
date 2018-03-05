@@ -1,0 +1,188 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <br>
+                <span ng-click="ctrl.skipOnboarding()" class="onboarding-skip">Skip and jump straight in »</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 onboarding-col start_step_center_small">
+                <div class="row row-eq-height">
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div ng-click="ctrl.jumpToStep('Company')" class="col-sm-3">
+                                <div ng-click="ctrl.jumpToStep('Company')"  class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span  ng-click="ctrl.jumpToStep('Company')"  class="fa fa-star-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div ng-click="ctrl.jumpToStep('Company')"  class="col-sm-12">
+                                <h4 class="onboarding-item-heading">Company</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div ng-click="ctrl.jumpToStep('Product')" class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div ng-click="ctrl.jumpToStep('Product')" class="onboarding-icon-container-sm">
+                                        <span ng-click="ctrl.jumpToStep('Product')" class="fa fa-folder-open-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div ng-click="ctrl.jumpToStep('Product')"  class="col-sm-12">
+                                <h4 class="onboarding-item-heading">Products</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-id-card-o onboarding-icon-sm"></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12">
+                                <h4 class="onboarding-item-heading">Personal Details</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm-pending">
+                                        <span class="fa fa-users onboarding-icon-sm"></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Connections</h4></div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+        </div>
+        <form name="PersonalDetails" novalidate>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-4">
+                <div class="row">
+                    <label class="col-sm-3 account-personal-details-company-logo">Profile photo</label>
+                    <div class="col-sm-6 account-company-details" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowFilesSubmitted($files, $event, $flow)">
+                        <div class="media">
+                            <div class="media-left">
+                                <a flow-btn href="javascript:void(0)">
+                                    <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getUserProfileImage()}}" alt="{{user.UserName}}">
+                                </a>
+                            </div>
+                            <div class="media-body" ng-show="hasPersonlImage">
+                                <h4 flow-btn style="cursor: pointer;" class="media-heading account-company-details-media-heading">Update&nbsp;&nbsp;<i class="fa fa-pencil"></i></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-details mandatory">Firstname</label>
+                    <div class="col-sm-6 account-personal-details">
+                        <input name="FirstName" id="FirstName" ng-keypress="ctrl.addPersonalProfileKeyPressEvent($event, PersonalDetails.FirstName)" type="text" class="form-control account-company-details" ng-model="user.FirstName" placeholder="" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-details mandatory">Surname</label>
+                    <div class="col-sm-6 account-company-details">
+                        <input name="Surname" id="Surname" ng-keypress="ctrl.addPersonalProfileKeyPressEvent($event, PersonalDetails.Surname)" type="text" class="form-control account-company-details" ng-model="user.LastName" placeholder="" required>
+                    </div>
+                </div>
+                <!--<div class="row">
+            <label class="col-sm-3 account-personal-details">Email</label>
+            <div class="col-sm-6 account-personal-details">
+                <input type="text" class="form-control account-personal-details" ng-model="ctrl.user.Email" placeholder="">
+            </div>
+        </div>-->
+                <div class="row">
+                    <label class="col-sm-3 account-company-details mandatory">Mobile</label>
+                    <div class="col-sm-6 account-company-details">
+                        <input name="PhoneNumber" id="PhoneNumber" type="text" ng-keypress="filterValue($event);ctrl.addPersonalProfileKeyPressEvent($event, PersonalDetails.PhoneNumber)" class="form-control account-company-details" ng-model="user.PhoneNumber" placeholder="" required>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-details">Country</label>
+                    <div class="col-sm-6 account-company-details">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle account-company-details-sector-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                {{user.Country}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li ng-repeat="country in ctrl.countries"><a href="javascript:void(0)" ng-click="setUserCountry(country.name)">{{country.name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-details mandatory">City/Town</label>
+                    <div class="col-sm-6 account-company-details">
+                        <input name="Town"  id="Town"  ng-keypress="ctrl.addPersonalProfileKeyPressEvent($event, PersonalDetails.Town)" type="text" class="form-control account-company-details" ng-model="user.Town" placeholder="" required>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4 text-center">
+                <button ng-click= "ctrl.backStep()" class="onboarding-start spc50 back-btn" ng-disabled="ctrl.busyPrev"><span ng-show="ctrl.busyPrev" class="glyphicon glyphicon-refresh spinning"></span>Back</button>
+                <button ng-click="ctrl.nextStep()" class="onboarding-start spc50" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Next</button>
+
+            </div>
+        </div>
+    </form>
+</main>
+<script type="text/ng-template" id="productFileDetailsPopover.html">
+    <div class="container-fluid upload-file-details-popover">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="productFile.Name" class="upload-file-title" placeholder="Title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <textarea type="text" ng-model="productFile.Description" class="upload-file-description" placeholder="Description"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.toggleEditProductFile(productFile)" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="urlUploadPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.uploadUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.getFileFromUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>

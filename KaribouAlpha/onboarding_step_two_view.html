@@ -1,0 +1,124 @@
+﻿<main>
+    <form name="myForm" novalidate>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <br>
+                    <span ng-click="ctrl.skipOnboarding()" class="onboarding-skip">Skip and jump straight in »</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 onboarding-col start_step_center_small">
+                    <div class="row row-eq-height">
+                        <div class="col-sm-3 onboarding-item-col">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div ng-click="ctrl.jumpToStep('Company')" class="onboarding-item-container">
+                                        <div ng-click="ctrl.jumpToStep('Company')" class="onboarding-icon-container-sm">
+                                            <span ng-click="ctrl.jumpToStep('Company')" class="fa fa-star-o onboarding-icon-sm"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                                </div>
+                                <div class="col-sm-12">
+                                    <h4 ng-click="ctrl.jumpToStep('Company')" class="onboarding-item-heading">Company</h4>
+                                </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-3 onboarding-item-col">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="onboarding-item-container">
+                                        <div class="onboarding-icon-container-sm">
+                                            <span class="fa fa-folder-open-o onboarding-icon-sm"></span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                                </div>
+                                <div class="col-sm-12"><h4 class="onboarding-item-heading">Products</h4></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 onboarding-item-col">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="onboarding-item-container">
+                                        <div class="onboarding-icon-container-sm-pending">
+                                            <span class="fa fa-id-card-o onboarding-icon-sm"></span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                                </div>
+                                <div class="col-sm-12"><h4 class="onboarding-item-heading">Personal Details</h4></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 onboarding-item-col">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="onboarding-item-container">
+                                        <div class="onboarding-icon-container-sm-pending">
+                                            <span class="fa fa-users onboarding-icon-sm"></span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-sm-12"><h4 class="onboarding-item-heading">Connections</h4></div>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-4">
+
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">
+                            Product name 
+                        </label>
+                        <div class="col-sm-6 account-company-details">
+                            <input type="text" id="productName" name="productName" ng-keypress="ctrl.addProductKeyPressEvent($event, myForm.productName)" class="form-control account-company-details" placeholder="" aria-describedby="basic-addon1" ng-model="ctrl.product.Name" required>
+                            <span class="private_text"> <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;<span class="pre_text">Private</span>&nbsp;(You can change this later)</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details-company-logo">Product logo</label>
+                        <div class="col-sm-6 account-company-details" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowProductLogoImageSubmitted($files, $event, $flow)">
+                            <div ng-if="!ctrl.product.Logo" flow-btn class="company-product-logo-add-container">
+                                <i class="fa fa-cloud-upload fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <img ng-if="ctrl.product.Logo" flow-btn class="img-circle company-product-logo" ng-src="{{ctrl.getProductLogo()}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">
+                            Description
+                        </label>
+                        <div class="col-sm-6 account-company-details">
+                            <textarea class="form-control account-company-details"  ng-keypress="ctrl.addProductKeyPressEvent($event, myForm.Description)"   id="Description" name="Description" ng-model="ctrl.product.Description" ng-minlength="20" required></textarea>
+                        </div>
+                        <span class="error" style="color:red" ng-show="myForm.Description.$error.minlength">
+                            Minimum 20 character
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4 text-center">
+                   
+                    <button ng-click="ctrl.prevStep()" class="onboarding-start spc50 back-btn" ng-disabled="ctrl.busyBack"><span ng-show="ctrl.busyBack" class="glyphicon glyphicon-refresh spinning"></span>Back</button>
+                   
+                    <button ng-click="ctrl.nextStep()"  class="onboarding-start spc50" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Next</button>
+                  
+                </div>
+            </div>
+        </div>
+    </form>
+</main>

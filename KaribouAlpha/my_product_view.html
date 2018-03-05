@@ -1,0 +1,485 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div ng-class="ctrl.feedbackVisible ? 'col-sm-8' : 'col-sm-12'">
+                <div class="row" ng-hide="HideDropDown">
+                    <div class="col-sm-12">
+                        <div class="dropdown pull-right user-selection" style="margin-bottom: 20px;" >
+                            <button class="btn-grn" style=""><i class="fa fa-pencil" aria-hidden="true"></i> Edit page</button>
+
+                            <span class="view_btn_span">
+                                <button class="btn btn-default dropdown-toggle user-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Viewing Product as: <span class="current-user">{{ctrl.selectedFollowerGroup ? ctrl.selectedFollowerGroup.Name : ''}}</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="javascript:void(0)" ng-click="ctrl.selectFollowerGroup('Public')" ng-model="Public" value="Public">Public</a></li>
+                                    <li ng-show="ctrl.followerGroups.length > 0" role="separator" class="divider"></li>
+                                    <li ng-show="GroupName.indexOf(group.Name) > -1" ng-repeat="group in ctrl.followerGroups track by group.ID"><a href="javascript:void(0)" ng-click="ctrl.selectFollowerGroup(group)">{{group.Name}}</a></li>
+                                </ul>
+                            </span>
+</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 product-description-col">
+                        <div class="product-description-container">
+                            <h4 class="product-title">{{ctrl.product.Name}}</h4>
+                            <p class="product-description">{{ctrl.product.Description}}</p>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.productFileTriplets.length > 0 && ctrl.productFileTriplets[0].productFiles.length > 0" class="col-sm-8 product-image-col-one">
+                        <div style="background-image: url(api/GetProductFileImage?productFileId={{ctrl.productFileTriplets[0].productFiles[0].ID}}&height=413)" class="col-sm-8 product-image-container-one">
+                            <div class="product-image-overlay-one">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <img class="product-file-video-icon" src="./img/play_icon.svg">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <h4 class="product-image-overlay-title">{{ctrl.productFileTriplets[0].productFiles[0].Name}}</h4>
+                                                <p class="product-image-overlay-description-one">{{ctrl.productFileTriplets[0].productFiles[0].Description}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-hide="ctrl.productAccessLevel.IsViewer">
+                                            <div class="col-sm-12">
+                                                <ul class="list-inline pull-right product-file-action-list">
+                                                    <li class="list-inline-item product-file-action-list-item">
+                                                        <div class="product-file-action-icon-container">
+                                                            <span ng-click="ctrl.showProductFileFeedback(ctrl.productFileTriplets[0].productFiles[0])" class="fa fa-comment-o product-file-action-icon"></span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-inline-item product-file-action-list-item">
+                                                        <div class="product-file-action-icon-container">
+                                                            <span class="fa fa-bar-chart product-file-action-icon"></span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-inline-item product-file-action-list-item">
+                                                        <div class="product-file-action-icon-container">
+                                                            <span ng-click="ctrl.downloadProductFile(ctrl.productFileTriplets[0].productFiles[0])" class="fa fa-cloud-download product-file-action-icon"></span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-inline-item product-file-action-list-item">
+                                                        <div class="product-file-action-icon-container">
+                                                            <span ui-sref="productFiles({productId: ctrl.productId})" class="fa fa-pencil product-file-action-icon"></span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-inline-item product-file-action-list-item">
+                                                        <div class="product-file-action-icon-container">
+                                                            <span ng-click="ctrl.deleteProductFile(ctrl.productFileTriplets[0].productFiles[0])" class="fa fa-times product-file-action-icon"></span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div ng-if="ctrl.productFileTriplets.length > 0 && ctrl.productFileTriplets[0].productFiles.length > 1" class="col-sm-5 product-image-col-two">
+                        <div style="background-image: url(api/GetProductFileImage?productFileId={{ctrl.productFileTriplets[0].productFiles[1].ID}}&height=432)" class="col-sm-5 product-image-container-two">
+                            <div class="product-image-overlay-two">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="product-image-overlay-title">{{ctrl.productFileTriplets[0].productFiles[1].Name}}</h4>
+                                        <p class="product-image-overlay-description-two">{{ctrl.productFileTriplets[0].productFiles[1].Description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row" ng-hide="ctrl.productAccessLevel.IsViewer">
+                                    <div class="col-sm-12">
+                                        <ul class="list-inline pull-right product-file-action-list">
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.showProductFileFeedback(ctrl.productFileTriplets[0].productFiles[1])" class="fa fa-comment-o product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span class="fa fa-bar-chart product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.downloadProductFile(ctrl.productFileTriplets[0].productFiles[1])" class="fa fa-cloud-download product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ui-sref="productFiles({productId: ctrl.productId})" class="fa fa-pencil product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.deleteProductFile(ctrl.productFileTriplets[0].productFiles[1])" class="fa fa-times product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.productFileTriplets.length > 0 && ctrl.productFileTriplets[0].productFiles.length > 2" class="col-sm-7 product-image-col-three">
+                        <div style="background-image: url(api/GetProductFileImage?productFileId={{ctrl.productFileTriplets[0].productFiles[2].ID}}&height=432)" class="col-sm-7 product-image-container-three">
+                            <div class="product-image-overlay-three">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="product-image-overlay-title">{{ctrl.productFileTriplets[0].productFiles[2].Name}}</h4>
+                                        <p class="product-image-overlay-description-three">{{ctrl.productFileTriplets[0].productFiles[2].Description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row" ng-hide="ctrl.productAccessLevel.IsViewer">
+                                    <div class="col-sm-12" >
+                                        <ul class="list-inline pull-right product-file-action-list">
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.showProductFileFeedback(ctrl.productFileTriplets[0].productFiles[2])" class="fa fa-comment-o product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span class="fa fa-bar-chart product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.downloadProductFile(ctrl.productFileTriplets[0].productFiles[2])" class="fa fa-cloud-download product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ui-sref="productFiles({productId: ctrl.productId})" class="fa fa-pencil product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.deleteProductFile(ctrl.productFileTriplets[0].productFiles[2])" class="fa fa-times product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="productFileTriplet in ctrl.productFileTriplets | limitTo: ctrl.productFileTriplets.length : 1" class="row">
+                    <div ng-if="productFileTriplet.productFiles.length > 0" class="col-sm-4 product-image-col-four">
+                        <div style="background-image: url(api/GetProductFileImage?productFileId={{productFileTriplet.productFiles[0].ID}}&height=294)" class="col-sm-4 product-image-container-four">
+                            <div class="product-image-overlay-four">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="product-image-overlay-title">{{productFileTriplet.productFiles[0].Name}}</h4>
+                                        <p class="product-image-overlay-description-four">{{productFileTriplet.productFiles[0].Description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row" ng-hide="ctrl.productAccessLevel.IsViewer">
+                                    <div class="col-sm-12">
+                                        <ul class="list-inline pull-right product-file-action-list">
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.showProductFileFeedback(productFileTriplet.productFiles[0])" class="fa fa-comment-o product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span class="fa fa-bar-chart product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.downloadProductFile(productFileTriplet.productFiles[0])" class="fa fa-cloud-download product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ui-sref="productFiles({productId: ctrl.productId})" class="fa fa-pencil product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.deleteProductFile(productFileTriplet.productFiles[0])" class="fa fa-times product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="productFileTriplet.productFiles.length > 1" class="col-sm-4 product-image-col-five">
+                        <div style="background-image: url(api/GetProductFileImage?productFileId={{productFileTriplet.productFiles[1].ID}}&height=294)" class="col-sm-4 product-image-container-five">
+                            <div class="product-image-overlay-five">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="product-image-overlay-title">{{productFileTriplet.productFiles[1].Name}}</h4>
+                                        <p class="product-image-overlay-description-five">{{productFileTriplet.productFiles[1].Description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row" ng-hide="ctrl.productAccessLevel.IsViewer">
+                                    <div class="col-sm-12">
+                                        <ul class="list-inline pull-right product-file-action-list">
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.showProductFileFeedback(productFileTriplet.productFiles[1])" class="fa fa-comment-o product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span class="fa fa-bar-chart product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.downloadProductFile(productFileTriplet.productFiles[1])" class="fa fa-cloud-download product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ui-sref="productFiles({productId: ctrl.productId})" class="fa fa-pencil product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.deleteProductFile(productFileTriplet.productFiles[1])" class="fa fa-times product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="productFileTriplet.productFiles.length > 2" class="col-sm-4 product-image-col-six">
+                        <div style="background-image: url(api/GetProductFileImage?productFileId={{productFileTriplet.productFiles[2].ID}}&height=294)" class="col-sm-4 product-image-container-six">
+                            <div class="product-image-overlay-six">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="product-image-overlay-title">{{productFileTriplet.productFiles[2].Name}}</h4>
+                                        <p class="product-image-overlay-description-six">{{productFileTriplet.productFiles[2].Description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row" ng-hide="ctrl.productAccessLevel.IsViewer">
+                                    <div class="col-sm-12">
+                                        <ul class="list-inline pull-right product-file-action-list">
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.showProductFileFeedback(productFileTriplet.productFiles[2])" class="fa fa-comment-o product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span class="fa fa-bar-chart product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.downloadProductFile(productFileTriplet.productFiles[2])" class="fa fa-cloud-download product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ui-sref="productFiles({productId: ctrl.productId})" class="fa fa-pencil product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item product-file-action-list-item">
+                                                <div class="product-file-action-icon-container">
+                                                    <span ng-click="ctrl.deleteProductFile(productFileTriplet.productFiles[2])" class="fa fa-times product-file-action-icon"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.productCustomers.length > 0" class="row">
+                    <div class="col-sm-1 col-sm-offset-1">
+                        <h4 class="product-clients">Clients</h4>
+                    </div>
+                    <div class="col-sm-2 col-sm-offset-8">
+                        <h4 class="product-view-all-clients">view all »</h4>
+                    </div>
+                </div>
+                <div ng-show="ctrl.productCustomers.length > 0" class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <ul class="list-inline product-client-list">
+                            <li ng-repeat="customer in ctrl.productCustomers" class="list-inline-item product-client-list-item">
+                                <img class="img-responsive product-client-logo" ng-src="api/GetCustomerLogo?id={{customer.ID}}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div ng-show="ctrl.products.length > 0" class="row">
+                    <div class="col-sm-12 product-other-products-col">
+                        <div class="row">
+                            <div class="col-sm-2 col-sm-offset-5 product-other-products-heading-col">
+                                Other products
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10 col-sm-offset-1 product-other-products-list-col">
+                                <ul class="list-inline product-other-products-list">
+                                    <li ng-repeat="product in ctrl.products track by product.ID" class="list-inline-item product-other-products-list-item">
+                                        <div ui-sref="myProduct({productId: product.ID})" style="cursor: pointer;" class="product-other-products-product-container">{{product.Name}}</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.productUpdates.length > 0" class="row">
+                    <div class="col-sm-4 col-sm-offset-4 product-news-heading-col">
+                        <div class="product-news-heading-container">
+                            Latest news
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.productUpdates.length > 0" class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="row">
+                            <div ng-show="ctrl.productUpdates.length > 0" class="col-sm-4">
+                                <div class="product-news-image-container">
+                                    <div class="product-news-image-overlay">
+                                        <h4 class="product-news-image-caption">#COMPANY NEWS</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="ctrl.productUpdates.length > 1" class="col-sm-4">
+                                <div class="product-news-image-container">
+                                    <div class="product-news-image-overlay">
+                                        <h4 class="product-news-image-caption">#COMPANY NEWS</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="ctrl.productUpdates.length > 2" class="col-sm-4">
+                                <div class="product-news-image-container">
+                                    <div class="product-news-image-overlay">
+                                        <h4 class="product-news-image-caption">#COMPANY NEWS</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div ng-show="ctrl.productUpdates.length > 0" class="col-sm-4">
+                                <div class="product-news-item">
+                                    <h4 class="product-news-item-date">4 days ago</h4>
+                                    <h2 class="product-news-item-title">{{ctrl.productUpdates[0].Title}}</h2>
+                                    <p class="product-news-item-body">{{ctrl.productUpdates[0].Description}}</p>
+                                    <button class="btn btn-default product-news-item-read">read »</button>
+                                </div>
+                            </div>
+                            <div ng-show="ctrl.productUpdates.length > 1" class="col-sm-4">
+                                <div class="product-news-item">
+                                    <h4 class="product-news-item-date">4 days ago</h4>
+                                    <h2 class="product-news-item-title">{{ctrl.productUpdates[1].Title}}</h2>
+                                    <p class="product-news-item-body">{{ctrl.productUpdates[1].Description}}</p>
+                                    <button class="btn btn-default product-news-item-read">read »</button>
+                                </div>
+                            </div>
+                            <div ng-show="ctrl.productUpdates.length > 2" class="col-sm-4">
+                                <div class="product-news-item">
+                                    <h4 class="product-news-item-date">4 days ago</h4>
+                                    <h2 class="product-news-item-title">{{ctrl.productUpdates[2].Title}}</h2>
+                                    <p class="product-news-item-body">{{ctrl.productUpdates[2].Description}}</p>
+                                    <button class="btn btn-default product-news-item-read">read »</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="ctrl.feedbackVisible" class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-12 dashboard-feedback-reply-col">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <span ng-click="ctrl.hideProductFileFeedback()" class="fa fa-times product-file-feedback-close-icon"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <textarea ng-model="ctrl.productFileFeedbackBody" class="dashboard-feedback-reply" placeholder="Feedback"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="ctrl.productFileFeedbackLinkUrl">
+                            <div class="col-sm-12">
+                                <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><a href="http://{{ctrl.productFileFeedbackLinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{ctrl.productFileFeedbackLinkUrl}}</a>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="ctrl.productFileFeedbackImage">
+                            <div class="col-sm-12">
+                                <img class="image-responsive dashboard-post-image" ng-src="{{ctrl.getProductFileFeedbackImage()}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9 dashboard-feedback-reply-include-icons-col">
+                                <ul flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowProductFileFeedbackImageSubmitted($files, $event, $flow)" class="list-inline dashboard-feedback-reply-include-icons">
+                                    <li><i class="fa fa-link dashboard-feedback-reply-include-icon" ng-click="ctrl.toggleEditProductFileFeedbackLinkUrl()" uib-popover-template="'productFileFeedbackLinkUrlPopover.html'" popover-is-open="ctrl.editingProductFileFeedbackLinkUrl" popover-trigger="'none'" popover-append-to-body="true"></i></li>
+                                    <li><i flow-btn class="fa fa-picture-o dashboard-feedback-reply-include-icon"></i></li>
+                                    <li><i class="fa fa-lock dashboard-feedback-reply-include-icon"></i></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3 dashboard-feedback-reply-button-col">
+                                <button ng-click="ctrl.postProductFileFeedback()" class="dashboard-feedback-reply" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 dashboard-post-comment-col">
+                        &nbsp;
+                    </div>
+                </div>
+                <div ng-repeat="feedback in ctrl.productFileFeedback" class="row">
+                    <div class="col-sm-10 col-sm-offset-1 dashboard-post-comment-col">
+                        <div class="row">
+                            <div class="com-sm-12">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="javascript:void(0)">
+                                            <img class="media-object img-circle dashboard-post-comment-author-avatar" ng-src="api/GetUserProfileImage?userId={{feedback.UserID}}" alt="{{ctrl.getArticleUserDisplayName(feedback)}}">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading dashboard-post-comment-author-name">{{ctrl.getArticleUserDisplayName(feedback)}}</h4>
+                                        <p class="dashboard-post-comment-author-company">{{feedback.UserCompanyDisplayName}} {{ctrl.getFeedbackDisplayDate(feedback)}}</p>
+                                        <p class="dashboard-post-comment-body">{{feedback.Body}}</p>
+                                        <i ng-if="feedback.LinkUrl" class="fa fa-link dashboard-post-comment-body-link-icon"></i><a ng-if="feedback.LinkUrl" href="http://{{feedback.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{feedback.LinkUrl}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="feedback.HasImage" class="row">
+                            <div class="col-sm-12">
+                                <img class="image-responsive dashboard-post-image" ng-src="/api/GetProductFileFeedbackImage?productFileFeedbackId={{feedback.ID}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="productFileFeedbackLinkUrlPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.productFileFeedbackLinkUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.setProductFileFeedbackLinkUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+<div ng-if="isSocial">
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a526a5a63df5d5c"></script>
+</div>

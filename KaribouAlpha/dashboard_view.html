@@ -1,0 +1,355 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row dashboard-stats-and-updates-row">
+            <div class="col-sm-6 dashboard-stats-col">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="dashboard-stats-item-container">
+                            <h4 class="dashboard-stats-item-heading">Profile</h4>
+                            <div class="dashboard-stats-profile-completion-indicator">
+                                <h4 class="dashboard-stats-profile-completion-percentage">65%</h4> 
+                                <h4 class="dashboard-stats-profile-completion-heading">complete</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 dashboard-stats-item-container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="dashboard-stats-item-heading">Downloads</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-2 dashboard-stats-bar-chart-container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="dashboard-stats-bar-previous-value" ng-style="{marginTop: (74 - ctrl.getHeightForStatsBar(74, ctrl.companyStatistics.ProductFileDownloadsLastWeek, ctrl.companyStatistics.ProductFileDownloadsThisWeek)) + 'px'}">{{ctrl.companyStatistics.ProductFileDownloadsLastWeek}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 dashboard-stats-bar-left-col">
+                                        <div class="dashboard-stats-bar-previous" ng-style="{height: ctrl.getHeightForStatsBar(75, ctrl.companyStatistics.ProductFileDownloadsLastWeek, ctrl.companyStatistics.ProductFileDownloadsThisWeek) + 'px'}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 dashboard-stats-bar-chart-container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="dashboard-stats-bar-current-value" ng-style="{marginTop: (74 - ctrl.getHeightForStatsBar(74, ctrl.companyStatistics.ProductFileDownloadsThisWeek, ctrl.companyStatistics.ProductFileDownloadsLastWeek)) + 'px'}">{{ctrl.companyStatistics.ProductFileDownloadsThisWeek}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 dashboard-stats-bar-right-col">
+                                        <div class="dashboard-stats-bar-current" ng-style="{height: ctrl.getHeightForStatsBar(75, ctrl.companyStatistics.ProductFileDownloadsThisWeek, ctrl.companyStatistics.ProductFileDownloadsLastWeek) + 'px'}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 dashboard-stats-item-container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="dashboard-stats-item-heading">Feedback</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-2 dashboard-stats-bar-chart-container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="dashboard-stats-bar-previous-value" ng-style="{marginTop: (74 - ctrl.getHeightForStatsBar(74, ctrl.companyStatistics.ProductFeedbackLastWeek, ctrl.companyStatistics.ProductFeedbackThisWeek)) + 'px'}">{{ctrl.companyStatistics.ProductFeedbackLastWeek}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 dashboard-stats-bar-left-col">
+                                        <div class="dashboard-stats-bar-previous" ng-style="{height: ctrl.getHeightForStatsBar(75, ctrl.companyStatistics.ProductFeedbackLastWeek, ctrl.companyStatistics.ProductFeedbackThisWeek) + 'px'}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 dashboard-stats-bar-chart-container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="dashboard-stats-bar-current-value" ng-style="{marginTop: (74 - ctrl.getHeightForStatsBar(74, ctrl.companyStatistics.ProductFeedbackThisWeek, ctrl.companyStatistics.ProductFeedbackLastWeek)) + 'px'}">{{ctrl.companyStatistics.ProductFeedbackThisWeek}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 dashboard-stats-bar-right-col">
+                                        <div class="dashboard-stats-bar-current" ng-style="{height: ctrl.getHeightForStatsBar(75, ctrl.companyStatistics.ProductFeedbackThisWeek, ctrl.companyStatistics.ProductFeedbackLastWeek) + 'px'}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 dashboard-stats-item-container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="dashboard-stats-item-heading">Views</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 col-sm-offset-2 dashboard-stats-bar-chart-container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="dashboard-stats-bar-previous-value" ng-style="{marginTop: (74 - ctrl.getHeightForStatsBar(74, ctrl.companyStatistics.ProductViewsLastWeek, ctrl.companyStatistics.ProductViewsThisWeek)) + 'px'}">{{ctrl.companyStatistics.ProductViewsLastWeek}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 dashboard-stats-bar-left-col">
+                                        <div class="dashboard-stats-bar-previous" ng-style="{height: ctrl.getHeightForStatsBar(75, ctrl.companyStatistics.ProductViewsLastWeek, ctrl.companyStatistics.ProductViewsThisWeek) + 'px'}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 dashboard-stats-bar-chart-container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 class="dashboard-stats-bar-current-value" ng-style="{marginTop: (74 - ctrl.getHeightForStatsBar(74, ctrl.companyStatistics.ProductViewsThisWeek, ctrl.companyStatistics.ProductViewsLastWeek)) + 'px'}">{{ctrl.companyStatistics.ProductViewsThisWeek}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 dashboard-stats-bar-right-col">
+                                        <div class="dashboard-stats-bar-current" ng-style="{height: ctrl.getHeightForStatsBar(75, ctrl.companyStatistics.ProductViewsThisWeek, ctrl.companyStatistics.ProductViewsLastWeek) + 'px'}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-sm-offset-3">
+                        <div class="dashboard-updates-item-selected-highlight-spacer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 dashboard-updates-col">
+                <div class="row">
+                    <div class="col-sm-3 dashboard-updates-item-col">
+                        <div ui-sref="dashboardProductUpdates" style="cursor: pointer;" class="dashboard-updates-item-container">
+                            <h4 class="dashboard-updates-item-heading">Product updates</h4>
+                            <div class="dashboard-updates-counter-container">
+                                <h4 class="dashboard-updates-counter">{{ctrl.notificationCounters.NewProductUpdates}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 dashboard-updates-item-col">
+                        <div ui-sref="dashboardFeedback" style="cursor: pointer;" class="dashboard-updates-item-container">
+                            <h4 class="dashboard-updates-item-heading">Feedback</h4>
+                            <div class="dashboard-updates-counter-container">
+                                <h4 class="dashboard-updates-counter">{{ctrl.notificationCounters.NewFeedback}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 dashboard-updates-item-col">
+                        <div ui-sref="dashboard" style="cursor: pointer;" class="dashboard-updates-item-container">
+                            <h4 class="dashboard-updates-item-heading">News updates</h4>
+                            <div class="dashboard-updates-counter-container">
+                                <h4 class="dashboard-updates-counter">{{ctrl.notificationCounters.NewNewsItems}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 dashboard-updates-item-col">
+                        <div ui-sref="personalConnections" style="cursor: pointer;" class="dashboard-updates-item-container">
+                            <h4 class="dashboard-updates-item-heading">Connections</h4>
+                            <div class="dashboard-updates-counter-container">
+                                <h4 class="dashboard-updates-counter">{{ctrl.notificationCounters.NewConnectionRequests}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-sm-offset-6">
+                        <div class="dashboard-updates-item-selected-highlight">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 dashboard-share-col">
+                <div ng-show="!ctrl.editing" ng-click="ctrl.enableEdit()" class="dashboard-share-button">
+                    <i class="fa fa-pencil dashboard-share-button-icon"></i>
+                </div>
+                <h4 class="dashboard-share-prompt">Share a product update or news</h4>
+                <textarea ng-show="ctrl.editing" class="dashboard-post-article" ng-model="ctrl.newArticleBody" placeholder="Lorem ipsum..."></textarea>
+            </div>
+        </div>
+        <div class="row" ng-show="ctrl.editing && ctrl.newArticleLinkUrl">
+            <div class="col-sm-8 col-sm-offset-2 dashboard-share-col">
+                <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><span class="dashboard-post-comment-body-link">http://{{ctrl.newArticleLinkUrl}}</span>
+            </div>
+        </div>
+        <div class="row" ng-show="ctrl.editing && ctrl.newArticle.Image">
+            <div class="col-sm-8 col-sm-offset-2 dashboard-share-col">
+                <img class="image-responsive dashboard-post-image" ng-src="{{ctrl.getNewArticleImage()}}">
+            </div>
+        </div>
+        <div ng-show="ctrl.editing" class="row">
+            <div class="col-sm-8 col-sm-offset-2 dashboard-share-col">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="dashboard-post-article-action-button">
+                            <i class="fa fa-link dashboard-post-article-include-icon" ng-click="ctrl.toggleEditNewArticleLinkUrl()" uib-popover-template="'newArticleLinkUrlPopover.html'" popover-is-open="ctrl.editingNewArticleLinkUrl" popover-trigger="'none'" popover-append-to-body="true"></i>
+                        </div>
+                    </div>
+                    <div flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowNewArticleImageSubmitted($files, $event, $flow)" class="col-sm-1">
+                        <div flow-btn class="dashboard-post-article-action-button">
+                            <i class="fa fa-picture-o dashboard-post-article-include-icon"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div ng-show="ctrl.products.length > 0" class="dashboard-post-article-product-selection">
+                            <button class="btn btn-default dropdown-toggle dashboard-post-article-product-selection" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                {{ctrl.newArticleProduct ? 'Product: ' + ctrl.newArticleProduct.Name : 'Choose product'}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0)" ng-click="ctrl.setNewArticleProduct(null)">No product</a></li>
+                                <li ng-repeat="product in ctrl.products"><a href="javascript:void(0)" ng-click="ctrl.setNewArticleProduct(product)">{{product.Name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button ng-click="ctrl.postNewArticle()" class="dashboard-post-article-post" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-class="{'dashboard-opaque': ctrl.editing}">
+            <div class="col-sm-12">
+                <div ng-repeat="article in ctrl.articles | orderBy:'-UpdatedAt'" class="row">
+                    <div class="col-sm-8 col-sm-offset-2 dashboard-post-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <img class="img-circle dashboard-post-author-avatar" ng-src="api/GetUserProfileImage?userId={{article.UserID}}" alt="{{ctrl.getArticleUserDisplayName(article)}}">
+                                <h4 class="dashboard-post-author-name">{{ctrl.getArticleUserDisplayName(article)}}</h4>
+                                <h5 class="dashboard-post-author-company-name">{{article.UserCompanyDisplayName}}</h5>
+                                <h5 class="dashboard-post-date" ng-bind="ctrl.getArticleDisplayDate(article)"></h5>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h3 ng-if="article.Body" class="dashboard-post-title">{{article.Title}}</h3>
+                                        <p ng-if="article.Body" class="dashboard-post-body">{{article.Body}}</p>
+                                        <p ng-if="!article.Body" class="dashboard-post-body-large">
+                                            &quot;{{article.Title}}&quot;'
+                                        </p>
+                                    </div>
+                                </div>
+                                <div ng-show="article.LinkUrl" class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><a href="http://{{article.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{article.LinkUrl}}</a>
+                                    </div>
+                                </div>
+                                <div ng-if="article.HasImage" class="row">
+                                    <div class="col-sm-12">
+                                        <img class="image-responsive dashboard-post-image" ng-src="/api/GetNewsItemImage?newsItemId={{article.ID}}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="dashboard-post-action-container">
+                                            <i class="fa fa-comment-o dashboard-post-action-icon"  ng-click="ctrl.showFeedbackEntrySection(article.ID)"></i> <span  ng-click="ctrl.showFeedbackEntrySection(article.ID)" class="dashboard-post-action-heading">{{article.Feedback.length}} comments</span>
+                                            &nbsp;<i class="fa fa-share dashboard-post-action-icon"></i> <span class="dashboard-post-action-heading">Share</span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row feedback{{article.ID}}" style="display:none;">
+                                    <div class="col-sm-12 dashboard-post-comment-col">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <textarea class="dashboard-post-comment" placeholder="Feedback" ng-model="article.newFeedbackBody"></textarea>
+                                            </div>
+                                        </div>
+                                        <div ng-if="article.newFeedbackLinkUrl" class="row">
+                                            <div class="col-sm-12">
+                                                <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><span class="dashboard-post-comment-body-link">http://{{article.newFeedbackLinkUrl}}</span>
+                                            </div>
+                                        </div>
+                                        <div ng-if="article.newFeedbackImage" class="row">
+                                            <div class="col-sm-12">
+                                                <img class="image-responsive dashboard-post-image" ng-src="{{ctrl.getNewFeedbackImage(article)}}">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowNewArticleFeedbackImageSubmitted($files, $event, $flow, article)" class="col-sm-10 dashboard-post-comment-include-icons-col">
+                                                <ul class="list-inline dashboard-post-comment-include-icons">
+                                                    <li>Include:</li>
+                                                    <li><i class="fa fa-link dashboard-post-comment-include-icon" ng-click="ctrl.toggleEditNewArticleFeedbackLinkUrl(article)" uib-popover-template="'newArticleFeedbackLinkUrlPopover.html'" popover-is-open="article.EditingLinkUrl" popover-trigger="'none'" popover-append-to-body="true"></i></li>
+                                                    <li><i flow-btn class="fa fa-picture-o dashboard-post-comment-include-icon"></i></li>
+                                                    <li><i class="fa fa-lock dashboard-post-comment-include-icon"></i></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-2 dashboard-post-comment-send-button-col">
+                                                <button class="dashboard-post-comment-send" ng-click="ctrl.postNewFeedbackForArticle(article)" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-repeat="feedback in article.Feedback" class="row">
+                                    <div class="col-sm-12 dashboard-post-comment-col">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="jvascript:void(0)">
+                                                            <img class="media-object img-circle dashboard-post-comment-author-avatar" ng-src="api/GetUserProfileImage?userId={{feedback.UserID}}" alt="Sarah Somebody">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading dashboard-post-comment-author-name">{{ctrl.getArticleUserDisplayName(feedback)}}</h4>
+                                                        <p class="dashboard-post-comment-author-company">{{feedback.UserCompanyDisplayName}} {{ctrl.getFeedbackDisplayDate(feedback)}}</p>
+                                                        <p class="dashboard-post-comment-body">{{feedback.Body}}</p>
+                                                        <i ng-if="feedback.LinkUrl" class="fa fa-link dashboard-post-comment-body-link-icon"></i><a ng-if="feedback.LinkUrl" href="http://{{feedback.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{feedback.LinkUrl}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-if="feedback.HasImage" class="row">
+                                            <div class="col-sm-12">
+                                                <img class="image-responsive dashboard-post-image" ng-src="/api/GetNewsItemFeedbackImage?newsItemFeedbackId={{feedback.ID}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="newArticleLinkUrlPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.newArticleLinkUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.setNewArticleLinkUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="newArticleFeedbackLinkUrlPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="article.newFeedbackLinkUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.setNewArticleFeedbackLinkUrl(article)" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>

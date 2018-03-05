@@ -1,0 +1,121 @@
+﻿<style>
+    html, body {
+        height: 100%;
+    }
+
+    /*body {
+        background: #1e5799;
+        background: -moz-linear-gradient(top, #1e5799 0, #00a3d8 0, #00c3e6 100%);
+        background: -webkit-linear-gradient(top, #1e5799 0, #00a3d8 0, #00c3e6 100%);
+        background: linear-gradient(to bottom, #1e5799 0, #00a3d8 0, #00c3e6 100%);
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#00c3e6', GradientType=0);
+    }
+
+    div.nav-container {
+        background: none;
+    }*/
+</style>
+<header>
+    <div class="container-fluid nav-container">
+        <nav class="navbar navbar-default home-nav">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/ForgotPassword">Forgot password?</a></li>
+                        <li><a href="/">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container-fluid home-bg">
+        <!--<div class="row">
+            <div ng-hide="ctrl.registrationComplete" class="col-lg-4 col-lg-offset-4">
+                <img src="img/logo-logged-in-deer.png" />
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 regestration-section">
+
+
+                <div class="registration-box">
+                    <div class="brand">
+                        <a href="/" title="Home"><img src="img/logo-logged-in-deer.png"></a>
+                    </div>
+                    <div class="registration-boxInner text-center">
+                        <div class="col-sm-12 custom_msg_form">
+                            <div class="error" ng-show="Error">
+                                <i class="fa fa-exclamation-triangle"></i>&nbsp;Email address already exists! Please <a href="ForgotPassword">click here</a> if you need to reset your password.
+                            </div>
+                        </div>
+                        <div class="col-sm-12 custom_msg_form">
+                            <div class="error" ng-show="validateError">
+                                <!--<span ng-show="EmailError"> Please enter email address</span>-->
+                                <!--<span ng-show="PasswordError">Please enter password</span>-->
+                                <!--<span ng-show="ConfirmPasswordError">Please enter Confirm password</span>-->
+                                <span ng-show="PasswordNotMatched">password does not match with confirm password</span>
+                                <span ng-show="LengthError">Password must be atleast 6 characters</span>
+                            </div>
+                        </div>
+
+                        <form name="myForm" class="form-horizontal" method="post" action="#" novalidate>
+                            <div ng-hide="ctrl.registrationComplete">
+                                <input type="email" onkeypress="return AvoidSpace(event)" class="registration-email-box" ng-blur="notValidEmailAddress=myForm.email.$error.pattern" ng-pattern="emailFormat" ng-model="ctrl.signupData.Email" name="email" placeholder="Email" required id="email" ng-keypress="ctrl.registrationKeyPressEvent($event, myForm.email)" />
+
+                                <span class="error" style="color:red;" ng-show="notValidEmailAddress">
+                                    <br />    Not valid email!<br />
+                                </span>
+                                <br />
+                                
+                                <input type="password" autocomplete="off" class="registration-password" ng-blur="miniLengthError=myForm.password.$error.minlength" ng-model="ctrl.signupData.Password" ng-minlength="6" name="password" id="password" placeholder="Password" required  ng-keypress="ctrl.registrationKeyPressEvent($event, myForm.password)"/>
+
+                                <span class="error" style="color:red" ng-if="ctrl.signupData.Password.length != '0' " ng-show="miniLengthError"><br /> Minimum 6<br /></span>
+
+                                <br />
+                                                                
+                                <input type="password" autocomplete="off" class="registration-password" ng-blur="miniLengthErrorConfirmPwd=myForm.ConfirmPassword.$error.minlength" ng-model="ctrl.signupData.ConfirmPassword" ng-minlength="6" name="ConfirmPassword"  id="ConfirmPassword" placeholder="Re-type password" required ng-keypress="ctrl.registrationKeyPressEvent($event, myForm.ConfirmPassword)" />
+
+                                <span class="error" style="color:red" ng-show="miniLengthErrorConfirmPwd"> <br />Minimum 6<br /></span>
+                                <br>
+
+                                <!--<button type="button" class="btn btn-default registration-register" ng-click="signup()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Register</button>-->
+                                <button type="button" class="onboarding-start wid_auto" ng-click="signup()">Register</button>
+                                <button type="button" class="onboarding-start wid_auto" ng-click="facebookLogin()">Facebook login</button>
+                                <button type="button" class="onboarding-start wid_auto" ng-click="googleLogin()">Google login</button>
+                                <button type="button" class="onboarding-start wid_auto" ng-click="linkedInLogin()">LinkedIn login</button>
+                            </div>
+                            <div ng-show="ctrl.registrationComplete">
+                                <div class="col-sm-12 custom_msg_form">
+
+                                    <div class="confirmation">
+                                        <i class="fa fa-check-circle"></i>&nbsp; Thank you for registering with Cervitt. An email has been sent to {{ctrl.signupData.Email}}.
+                                        Please follow the instructions to activate your account.
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+<script>
+    function AvoidSpace(event) {
+        var k = event ? event.which : window.event.keyCode;
+        if (k == 32) return false;
+    }
+
+</script>

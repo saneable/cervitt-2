@@ -1,0 +1,47 @@
+﻿<header>
+    <div class="container-fluid nav-container">
+        <nav class="navbar navbar-default home-nav">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Forgot password?</a></li>
+                        <li><a ui-sref="registration">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="container-fluid home-bg">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <img src="img/logo-logged-in-deer.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <div class="login-box">
+                    <form class="form-horizontal" method="post" action="#">
+                        <input type="text" class="login-email" ng-model="ctrl.loginData.userName" name="email" id="email" placeholder="Email" />
+                        <input type="password" class="login-password" ng-model="ctrl.loginData.password" name="password" id="password" placeholder="Password" />
+                        <div class="login-remember-me">
+                            <label for="rememberMe" class="login-remember-me"><input type="checkbox" name="rememberMe" id="rememberMe" checked /> Remember me</label>
+                        </div>
+                        <button type="button" class="btn btn-default login-login" ng-click="ctrl.login()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Login</button>
+                        <!--<button class="btn btn-large btn-google-plus btn-block" type="button" data-ng-click="ctrl.googleLogin()"><i class="fa fa-google-plus"></i> | Connect with Google+</button>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>

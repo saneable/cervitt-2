@@ -1,0 +1,118 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row account-personal-tabs-row">
+            <div class="col-sm-12 account-personal-tabs-col">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="personalProfileDetails">Details</a></li>
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="personalProfileNotifications">Email notifications</a></li>
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="personalProfileSocialMedia">Social media</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row account-personal-details-main-row">
+            <div class="col-sm-3 account-personal-links-left">
+                <ul class="account-personal-links-left">
+                    <li ng-hide="ctrl.individualFlag" class="account-personal-link-left"><a class="account-personal-link-left" ui-sref="companyProfileDetails">Company profile</a></li>
+                    <li class="account-personal-link-left"><a class="account-personal-link-left active" ui-sref="personalProfileDetails">Personal profile</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 account-company-social-main-col">
+                <div ng-show="ctrl.hasConfirmation" class="row">
+                    <div class="col-sm-10 confirmation-col">
+                        <div class="confirmation">
+                            <i class="fa fa-check-circle"></i>&nbsp;{{ctrl.confirmationMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.hasError" class="row">
+                    <div class="col-sm-10 error-col">
+                        <div class="error">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ctrl.errorMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7 account-company-social-prompt">
+                        <p class="account-company-social-prompt">Please choose the social media accounts you would like to add links onto your personal profile</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-social">LinkedIn</label>
+                    <div class="col-sm-5 account-company-social">
+                        <div class="input-group">
+                            <span class="input-group-addon account-company-social-input-group" id="basic-addon1"><i class="fa fa-linkedin"></i></span>
+                            <input type="text" class="form-control account-company-social-input-group" ng-model="ctrl.user.LinkedInUrl" placeholder="" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-social">Twitter</label>
+                    <div class="col-sm-5 account-company-social">
+                        <div class="input-group">
+                            <span class="input-group-addon account-company-social-input-group" id="basic-addon1"><i class="fa fa-twitter"></i></span>
+                            <input type="text" class="form-control account-company-social-input-group" ng-model="ctrl.user.TwitterUrl" placeholder="" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-social">Facebook</label>
+                    <div class="col-sm-5 account-company-social">
+                        <div class="input-group">
+                            <span class="input-group-addon account-company-social-input-group" id="basic-addon1"><i class="fa fa-facebook"></i></span>
+                            <input type="text" class="form-control account-company-social-input-group" ng-model="ctrl.user.FacebookUrl" placeholder="" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-social">Instagram</label>
+                    <div class="col-sm-5 account-company-social">
+                        <div class="input-group">
+                            <span class="input-group-addon account-company-social-input-group" id="basic-addon1"><i class="fa fa-instagram"></i></span>
+                            <input type="text" class="form-control account-company-social-input-group" ng-model="ctrl.user.InstagramUrl" placeholder="" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-social">Pinterest</label>
+                    <div class="col-sm-5 account-company-social">
+                        <div class="input-group">
+                            <span class="input-group-addon account-company-social-input-group" id="basic-addon1"><i class="fa fa-pinterest"></i></span>
+                            <input type="text" class="form-control account-company-social-input-group" ng-model="ctrl.user.PinterestUrl" placeholder="" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-social">Tumblr</label>
+                    <div class="col-sm-5 account-company-social">
+                        <div class="input-group">
+                            <span class="input-group-addon account-company-social-input-group" id="basic-addon1"><i class="fa fa-tumblr"></i></span>
+                            <input type="text" class="form-control account-company-social-input-group" ng-model="ctrl.user.TumblrUrl" placeholder="" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-3 account-company-social">Add more</label>
+                    <div class="col-sm-5 account-company-social">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle account-company-details-sector-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Please choose
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="button" class="btn btn-default account-peronal-social-media-save" ng-click="ctrl.updateMySocialMediaLinks()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>

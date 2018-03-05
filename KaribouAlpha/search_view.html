@@ -1,0 +1,58 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row connections-connection-form-row">
+            <div class="col-sm-12 connections-connection-count-col">
+                <p class="connections-connection-count">{{ctrl.companies.length + ctrl.products.length}} results for &quot{{ctrl.searchQuery}}&quot;</p>
+            </div>
+        </div>
+        <div class="row connections-main-row row-eq-height">
+            <div class="col-sm-3 connections-links-left">
+                <ul class="connections-links-left">
+                    <li class="connections-link-left"><a href="javascript:void(0)" class="connections-link-left" ng-class="{'active' : !ctrl.companiesVisible}" ng-click="ctrl.showProducts()">Products ({{ctrl.products.length}})</a></li>
+                    <li class="connections-link-left"><a href="javascript:void(0)" class="connections-link-left" ng-class="{'active' : ctrl.companiesVisible}" ng-click="ctrl.showCompanies()">Companies ({{ctrl.companies.length}})</a></li>
+                </ul>
+            </div>
+            <div ng-show="ctrl.companiesVisible" class="col-sm-9">
+                <div ui-sref="company({companyId: company.ID})" ng-repeat="company in ctrl.companies" class="row search-search-results-row">
+                    <div class="col-sm-10 connections-connection-col">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object search-media-company-logo" ng-src="api/GetCompanyLogo?companyId={{company.ID}}" alt="{{company.CompanyDisplayName}}">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading search-company-media-heading">{{company.DisplayName}}</h4>
+                                <p class="search-company-media-body">{{company.Description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 connections-connection-products-col">
+                        <p class="connections-connection-updates"><span class="badge connections-connection-updates-badge">{{company.FollowersCount}}</span>Connections</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="!ctrl.companiesVisible" class="col-sm-9">
+                <div ui-sref="product({productId: product.ID, companyId: product.CompanyID})" ng-repeat="product in ctrl.products" class="row search-search-results-row">
+                    <div class="col-sm-10 connections-connection-col">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object search-media-company-logo" ng-src="api/GetProductLogo?productId={{product.ID}}" alt="{{product.Name}}">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading search-company-media-heading">{{product.Name}}</h4>
+                                <p class="search-company-media-body">{{product.Description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 connections-connection-products-col">
+                        <p class="connections-connection-updates"><span class="badge connections-connection-updates-badge">{{product.CompanyFollowersCount}}</span>Connections</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>

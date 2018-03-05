@@ -1,0 +1,382 @@
+﻿<main>
+    <div class="container-fluid overflow_hide">
+        <div class="row">
+            <div ng-class="feedbackVisible ? 'col-sm-8' : 'col-sm-12'" class="col-sm-12 company-image-col">
+                <div class="company-image-container" style="">
+                    <img class="banner_img" ng-src="{{getCompanyHeaderImage()}}" ng-hide="NoHeaderImage">
+                    <img class="banner_img" ng-src="{{getDefaultHeaderImage()}}" ng-show="NoHeaderImage">
+                    <button class="pull-right btn-grn" style="" ng-click="ctrl.GoToEditCompany()"><i class="fa fa-pencil" aria-hidden="true"></i> Edit page</button>
+                    <div class="row">
+                        <div ng-class="feedbackVisible ? 'col-sm-12 col-sm-offset-0' : 'col-sm-8 col-sm-offset-2'" class="col-sm-8 col-sm-offset-2 company-details-col">
+                            <div class="row">
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="company-details-container" ng-style="!ctrl.company.Description && {'opacity':'0.0'}">
+                                        <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getCompanyProfileImage()}}">
+                                        <div class="row account-company-tabs-row">
+                                            <div class="account-company-tabs-col">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="dropdown">
+                                                        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Product <span class="caret"></span></a>
+                                                        <ul class="dropdown-menu">
+
+                                                            <li ng-show="ctrl.products.length > 0" role="separator" class="divider"></li>
+                                                            <li ng-repeat="product in ctrl.products track by product.ID"><a ui-sref="myProduct({productId: product.ID})">{{product.Name}}</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="companyProfileNews">News</a></li>
+                                                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileFollowerGroups">Follower groups</a></li>-->
+                                                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileNotifications">Email notifications</a></li>-->
+                                                    <li role="presentation"><a class="company-profile-tab">Connections</a></li>
+                                                    <li role="presentation"><a class="company-profile-tab">Team</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="row company-profile-news-tabs-row">
+                                            <button class="dashboard-feedback-reply fix_btm" ng-show="ShowMessageButton" style="float:right" ng-click="ShowMessageOption()"><i class="fa fa-comments-o" aria-hidden="true"></i> Send Message</button>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                           
+                            </div>
+
+                            <div class="row account-company-details-main-row">
+
+
+                                <div class="col-sm-12 account-company-details-main-col ">
+
+                                    <div class="row">
+                                        <div class="col-sm-12 company-profile-news-share-col">
+                                            <div ng-show="!ctrl.editing" ng-click="ctrl.enableEdit()" class="dashboard-share-button">
+                                                <i class="fa fa-pencil dashboard-share-button-icon"></i>
+                                            </div>
+                                            <h4 class="dashboard-share-prompt">Share a product update or news</h4>
+                                            <textarea ng-show="ctrl.editing" class="dashboard-post-article" ng-model="ctrl.newArticleBody" placeholder="Lorem ipsum..."></textarea>
+
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="ctrl.editing && ctrl.newArticleLinkUrl">
+                                        <div class="col-sm-12 dashboard-share-col">
+                                            <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><span class="dashboard-post-comment-body-link">http://{{ctrl.newArticleLinkUrl}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-show="ctrl.editing && ctrl.newArticle.Image">
+                                        <div class="col-sm-12 dashboard-share-col">
+                                            <img class="image-responsive dashboard-post-image" ng-src="{{ctrl.getNewArticleImage()}}">
+                                        </div>
+                                    </div>
+                                    <div ng-show="ctrl.editing" class="row">
+                                        <div class="col-sm-12 dashboard-share-col">
+                                            <div class="row">
+                                                <div class="col-sm-1">
+                                                    <div class="dashboard-post-article-action-button">
+                                                        <i class="fa fa-link dashboard-post-article-include-icon" ng-click="ctrl.toggleEditNewArticleLinkUrl()" uib-popover-template="'newArticleLinkUrlPopover.html'" popover-is-open="ctrl.editingNewArticleLinkUrl" popover-trigger="'none'" popover-append-to-body="true"></i>
+                                                    </div>
+                                                </div>
+                                                <div flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowNewArticleImageSubmitted($files, $event, $flow)" class="col-sm-1">
+                                                    <div flow-btn class="dashboard-post-article-action-button">
+                                                        <i class="fa fa-picture-o dashboard-post-article-include-icon"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div ng-show="ctrl.products.length > 0" class="dashboard-post-article-product-selection">
+                                                        <button class="btn btn-default dropdown-toggle dashboard-post-article-product-selection" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                            {{ctrl.newArticleProduct ? 'Product: ' + ctrl.newArticleProduct.Name : 'Choose product'}}
+                                                            <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="javascript:void(0)" ng-click="ctrl.setNewArticleProduct(null)">No product</a></li>
+                                                            <li ng-repeat="product in ctrl.products"><a href="javascript:void(0)" ng-click="ctrl.setNewArticleProduct(product)">{{product.Name}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <button ng-click="ctrl.postNewArticle()" class="dashboard-post-article-post" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Post</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-class="{'dashboard-opaque': ctrl.editing}">
+                                        <div class="col-sm-12">
+                                            <div ng-repeat="article in ctrl.articles | orderBy:'-UpdatedAt'" class="row">
+                                                <div class="col-sm-12 dashboard-post-col">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <img class="img-circle dashboard-post-author-avatar" ng-src="api/GetUserProfileImage?userId={{article.UserID}}" alt="{{ctrl.getArticleUserDisplayName(article)}}">
+                                                            <span class="left_img_small">
+                                                                <h4 class="dashboard-post-author-name">{{ctrl.getArticleUserDisplayName(article)}}</h4>
+                                                                <h5 class="dashboard-post-author-company-name">{{article.UserCompanyDisplayName}}</h5>
+                                                                <h5 class="dashboard-post-date" ng-bind="ctrl.getArticleDisplayDate(article)"></h5>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <h3 ng-if="article.Body" class="dashboard-post-title">{{article.Title}}</h3>
+                                                                    <p ng-if="article.Body" class="dashboard-post-body">{{article.Body}}</p>
+                                                                    <p ng-if="!article.Body" class="dashboard-post-body-large">
+                                                                        &quot;{{article.Title}}&quot;'
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-show="article.LinkUrl" class="row">
+                                                                <div class="col-sm-12">
+                                                                    <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><a href="http://{{article.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{article.LinkUrl}}</a>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-if="article.HasImage" class="row">
+                                                                <div class="col-sm-12">
+                                                                    <img class="image-responsive dashboard-post-image" ng-src="/api/GetNewsItemImage?newsItemId={{article.ID}}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="dashboard-post-action-container">
+                                                                        <i class="fa fa-comment-o dashboard-post-action-icon" ng-click="ctrl.showFeedbackEntrySection(article.ID)"></i> <span ng-click="ctrl.showFeedbackEntrySection(article.ID)" class="dashboard-post-action-heading">{{article.Feedback.length}} comments</span>
+                                                                        &nbsp;<i class="fa fa-share dashboard-post-action-icon"></i> <span class="dashboard-post-action-heading">Share</span>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <div class="row feedback{{article.ID}}" style="display:none;">
+                                                                <div class="col-sm-12 dashboard-post-comment-col">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <textarea class="dashboard-post-comment" placeholder="Feedback" ng-model="article.newFeedbackBody"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-if="article.newFeedbackLinkUrl" class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><span class="dashboard-post-comment-body-link">http://{{article.newFeedbackLinkUrl}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-if="article.newFeedbackImage" class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <img class="image-responsive dashboard-post-image" ng-src="{{ctrl.getNewFeedbackImage(article)}}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowNewArticleFeedbackImageSubmitted($files, $event, $flow, article)" class="col-sm-10 dashboard-post-comment-include-icons-col">
+                                                                            <ul class="list-inline dashboard-post-comment-include-icons">
+                                                                                <li>Include:</li>
+                                                                                <li><i class="fa fa-link dashboard-post-comment-include-icon" ng-click="ctrl.toggleEditNewArticleFeedbackLinkUrl(article)" uib-popover-template="'newArticleFeedbackLinkUrlPopover.html'" popover-is-open="article.EditingLinkUrl" popover-trigger="'none'" popover-append-to-body="true"></i></li>
+                                                                                <li><i flow-btn class="fa fa-picture-o dashboard-post-comment-include-icon"></i></li>
+                                                                                <li><i class="fa fa-lock dashboard-post-comment-include-icon"></i></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-sm-2 dashboard-post-comment-send-button-col">
+                                                                            <button class="dashboard-post-comment-send" ng-click="ctrl.postNewFeedbackForArticle(article)" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Send</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-repeat="feedback in article.Feedback" class="row">
+                                                                <div class="col-sm-12 dashboard-post-comment-col">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <div class="media">
+                                                                                <div class="media-left">
+                                                                                    <a href="jvascript:void(0)">
+                                                                                        <img class="media-object img-circle dashboard-post-comment-author-avatar" ng-src="api/GetUserProfileImage?userId={{feedback.UserID}}" alt="Sarah Somebody">
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="media-body">
+                                                                                    <h4 class="media-heading dashboard-post-comment-author-name">{{ctrl.getArticleUserDisplayName(feedback)}}</h4>
+                                                                                    <p class="dashboard-post-comment-author-company">{{feedback.UserCompanyDisplayName}} {{ctrl.getFeedbackDisplayDate(feedback)}}</p>
+                                                                                    <p class="dashboard-post-comment-body">{{feedback.Body}}</p>
+                                                                                    <i ng-if="feedback.LinkUrl" class="fa fa-link dashboard-post-comment-body-link-icon"></i><a ng-if="feedback.LinkUrl" href="http://{{feedback.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{feedback.LinkUrl}}</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-if="feedback.HasImage" class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <img class="image-responsive dashboard-post-image" ng-src="/api/GetNewsItemFeedbackImage?newsItemFeedbackId={{feedback.ID}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            
+            <div ng-show="MessageVisible" class="col-sm-4" style="float:right">
+                                <div class="row">
+                                    <div class="col-sm-12 dashboard-feedback-reply-col fix_wid_pad">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <span ng-click="HideMessageOption()" class="fa fa-times product-file-feedback-close-icon"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <textarea ng-model="MessageModel.Message" class="dashboard-feedback-reply" placeholder="Feedback"></textarea>
+                                                <div ng-if="MessageModel.issubmit && MessageModel.msgerrorr" class="error-class">
+                                                    Enter the Message
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-show="MessageModel.LinkUrl">
+                                            <div class="col-sm-12">
+                                                <i class="fa fa-link dashboard-post-comment-body-link-icon"></i><a href="http://{{MessageModel.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{MessageModel.LinkUrl}}</a>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-show="MessageModel.Image">
+                                            <div class="col-sm-12">
+                                                <img class="image-responsive dashboard-post-image" ng-src="{{ctrl.GetSubbmitedImage()}}">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-9 dashboard-feedback-reply-include-icons-col">
+                                                <ul flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.MessageImageSubmitted($files, $event, $flow)" class="list-inline dashboard-feedback-reply-include-icons">
+                                                    <li><i class="fa fa-link dashboard-feedback-reply-include-icon" ng-click="AddMessageLinkUrl()" uib-popover-template="'MessageLinkUrlPopover.html'" popover-is-open="ctrl.OpenMessagePopupLinkUrl" popover-trigger="'none'" popover-append-to-body="true"></i></li>
+                                                    <li><i flow-btn class="fa fa-picture-o dashboard-feedback-reply-include-icon"></i></li>
+                                                    <li><i class="fa fa-lock dashboard-feedback-reply-include-icon"></i></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-3 dashboard-feedback-reply-button-col">
+                                                <button ng-click="SendMessageToCompany()" class="dashboard-feedback-reply" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-10 col-sm-offset-1 dashboard-post-comment-col">
+                                        &nbsp;
+                                    </div>
+                                </div>
+                                <div ng-repeat="MessageValue in CompanyMessages" class="row">
+                                    <div class="col-sm-10 col-sm-offset-1 dashboard-post-comment-col">
+                                        <div class="row">
+                                            <div class="com-sm-12">
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <a href="javascript:void(0)">
+                                                            <img class="media-object img-circle dashboard-post-comment-author-avatar" ng-src="api/GetUserProfileImage?userId={{MessageValue.UserId}}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading dashboard-post-comment-author-name">{{MessageValue.FirstName}} {{MessageValue.LastName}}</h4>
+                                                        <p class="dashboard-post-comment-author-company">{{MessageCompanyName}} {{ctrl.MessageDisplayDate(MessageValue)}}</p>
+                                                        <p class="dashboard-post-comment-body">{{MessageValue.Message}}</p>
+                                                        <i ng-if="MessageValue.LinkUrl" class="fa fa-link dashboard-post-comment-body-link-icon"></i><a ng-if="MessageValue.LinkUrl" href="http://{{MessageValue.LinkUrl}}" target="_blank" class="dashboard-post-comment-body-link">http://{{MessageValue.LinkUrl}}</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="MessageValue.Image" class="row">
+                                            <div class="col-sm-12">
+                                                <img class="image-responsive dashboard-post-image" ng-src="data:image/JPEG;base64, {{MessageValue.Image}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+        </div>
+            <div ng-if="ctrl.company.PhoneNumber || ctrl.company.Email || ctrl.company.LinkedInUrl || ctrl.company.WebsiteUrl" class="row">
+                <div class="col-sm-2 col-sm-offset-5 company-contact-us-col">
+                    <button class="btn btn-default account-personal-details-save">Contact us</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 company-contact-details-col">
+                    <ul class="list-inline company-contact-details-list">
+                        <li ng-if="ctrl.company.PhoneNumber" class="list-inline-item company-contact-details-item">
+                            <div class="company-contact-details-item-container">
+                                <i class="fa fa-mobile company-contact-details-item-icon-mobile"></i>
+                                <h2 class="company-contact-details-item-heading">
+                                    <a href="tel:{{ctrl.company.PhoneNumber}}">Phone</a>
+                                </h2>
+                            </div>
+                        </li>
+                        <li ng-if="ctrl.company.Email" class="list-inline-item company-contact-details-item">
+                            <div class="company-contact-details-item-container">
+                                <i class="fa fa-envelope-o company-contact-details-item-icon"></i>
+                                <h2 class="company-contact-details-item-heading">
+                                    <a href="mailto:{{ctrl.company.Email}}">Email</a>
+                                </h2>
+                            </div>
+                        </li>
+                        <li ng-if="ctrl.company.LinkedInUrl" class="list-inline-item company-contact-details-item">
+                            <div class="company-contact-details-item-container">
+                                <i class="fa fa-linkedin company-contact-details-item-icon"></i>
+                                <h2 class="company-contact-details-item-heading">
+                                    <a href="http://{{ctrl.company.LinkedInUrl}}">LinkedIn</a>
+                                </h2>
+                            </div>
+                        </li>
+                        <li ng-if="ctrl.company.WebsiteUrl" class="list-inline-item company-contact-details-item">
+                            <div class="company-contact-details-item-container">
+                                <i class="fa fa-desktop company-contact-details-item-icon"></i>
+                                <h2 class="company-contact-details-item-heading">
+                                    <a href="http://{{ctrl.company.WebsiteUrl}}">Website</a>
+                                </h2>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</main>
+<script type="text/ng-template" id="newArticleLinkUrlPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.newArticleLinkUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.setNewArticleLinkUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="newArticleFeedbackLinkUrlPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="article.newFeedbackLinkUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.setNewArticleFeedbackLinkUrl(article)" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="MessageLinkUrlPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="MessageModel.LinkUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.setMessageLinkUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+

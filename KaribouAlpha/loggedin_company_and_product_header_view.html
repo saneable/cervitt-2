@@ -1,0 +1,59 @@
+﻿<header>
+    <div class="container-fluid main-nav-container">
+        <nav class="navbar navbar-default navbar-fixed-top main-nav">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a ng-mouseover="ctrl.hideCompanyAndProductNavbar()" ng-mouseleave="ctrl.showCompanyAndProductNavbar()" class="navbar-brand logo" ui-sref="dashboard"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul ng-hide="ctrl.companyAndProductNavbarVisible" ng-mouseleave="ctrl.showCompanyAndProductNavbar()" class="nav navbar-nav navbar-left main-nav-links">
+                        <li class="main-nav-icon-plus"><a ng-click="ctrl.showAddActionSubmenu()" ng-hide="ctrl.addActionSubmenuVisible === true" class="main-nav-icon-plus" href="javascript:void(0)"><i class="fa fa-plus main-nav-icon-plus" aria-hidden="true"></i></a></li>
+                        <li class="main-nav-add-action"><a ng-click="ctrl.hideAddActionSubmenu()" ng-show="ctrl.addActionSubmenuVisible === true" class="main-nav-add-action" ui-sref="productFileUpload">File</a></li>
+                        <li class="main-nav-add-action"><a ng-click="ctrl.hideAddActionSubmenu()" ng-show="ctrl.addActionSubmenuVisible === true" class="main-nav-add-action" ui-sref="dashboard({showArticleEditor: true})">News post</a></li>
+                        <li class="main-nav-add-action"><a ng-show="ctrl.addActionSubmenuVisible === true" class="main-nav-add-action" href="javascript:void(0)" ui-sref="productDetails({productId: null})">Product</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Company profile <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ui-sref="myCompany">Profile details</a></li>
+                                <li ng-show="ctrl.products.length > 0" role="separator" class="divider"></li>
+                                <li ng-repeat="product in ctrl.myProducts track by product.ID"><a ui-sref="productDetails({productId: product.ID})">{{product.Name}}</a></li>
+                            </ul>
+                        </li>
+                        <li><a ui-sref="personalConnections">Connections</a></li>
+                        <li><a ui-sref="dashboard">News from connections<span class="badge main-nav-badge"> 11</span></a></li>
+                    </ul>
+                    <ul ng-hide="ctrl.companyAndProductNavbarVisible" ng-mouseleave="ctrl.showCompanyAndProductNavbar()" class="nav navbar-nav navbar-right main-nav-links">
+                        <li><a ui-sref="personalProfileDetails"><i class="fa fa-user main-nav-icon" aria-hidden="true"></i></a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-search main-nav-icon" aria-hidden="true"></i></a></li>
+                    </ul>
+                    <ul ng-show="ctrl.companyAndProductNavbarVisible" ng-mouseover="ctrl.showCompanyAndProductNavbar()" class="nav navbar-nav navbar-left company-nav-links">
+                        <li><img class="company-nav-logo" src="img/intellibox.png"></li>
+                        <li><div class="company-nav-divider-vertical-container"><div class="company-nav-divider-vertical"></div></div></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle company-nav-product-selection" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Choose product <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="product in ctrl.companyProducts track by product.ID">
+                                    <a ui-sref="product({productId: product.ID, companyId: product.CompanyID})">{{product.Name}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul ng-show="ctrl.companyAndProductNavbarVisible" class="nav navbar-nav navbar-right main-nav-links">
+                        <li><a href="javascript:void(0)">About</a></li>
+                        <li><a href="javascript:void(0)">Team</a></li>
+                        <li><a href="javascript:void(0)">News</a></li>
+                        <li><a href="javascript:void(0)">Connections</a></li>
+                        <li ng-hide="ctrl.isConnected"><button class="connect" ng-click="ctrl.addConnection()">Connect&nbsp;&nbsp;<i class="fa fa-star-o connect-icon"></i></button></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+</header>

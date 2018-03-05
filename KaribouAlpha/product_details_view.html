@@ -1,0 +1,120 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" style="height: 80px;">
+            </div>
+        </div>
+        <div class="row company-profile-tabs">
+            <div class="col-sm-12 company-profile-tabs">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="productDetails({productId: ctrl.productId})">Details</a></li>
+                    <!--<li ng-show="ctrl.productId" role="presentation"><a class="company-profile-tab" ui-sref="productTeam({productId: ctrl.productId})">Team</a></li>-->
+                    <li ng-show="ctrl.productId" role="presentation"><a class="company-profile-tab" ui-sref="productFiles({productId: ctrl.productId})">Product Materials</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row company-details-main-row">
+            <div class="col-sm-3 company-product-links-left">
+                <ul ng-show="ctrl.products.length > 0"class="company-product-links-left">
+                    <li ng-repeat="product in ctrl.products track by product.ID" class="company-product-link-left"><a class="company-product-link-left" ng-class="{'active' : ctrl.productId == product.ID}" ui-sref="productDetails({productId: product.ID})">{{product.Name}}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="company-product-controls">
+                            <input type="text" id="productName" name="productName" class="form-control company-product-input-text" placeholder="Product name" aria-describedby="basic-addon1" ng-model="ctrl.product.Name" ng-change="ctrl.updateProductUri()" >
+                            <label for="productName" class="company-product-input-label">http://cervitt.co.uk/p/{{ctrl.company.URI}}/{{ctrl.product.URI}}</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="dropdown company-product-privacy-dropdown">
+                            <button class="btn btn-default dropdown-toggle account-company-details-sector-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Privacy: {{ctrl.getProductPrivacyLiteral()}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li ng-repeat="productPrivacy in ctrl.productPrivacyEnum"><a href="javascript:void(0)" ng-click="ctrl.setProductPrivacy(productPrivacy)">{{productPrivacy.name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.product.Privacy === 3" class="row company-product-details-row">
+                    <div class="col-sm-3">
+                        <h4 class="company-product-details">Follower groups</h4>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="company-product-details-groups">{{ctrl.getProductGroupVisibilityDisplay()}}</span>
+                    </div>
+                    <div class="col-sm-1">
+                        <span class="fa fa-pencil connections-connection-member-edit-icon" ng-click="ctrl.editProductGroupVisibility()"></span>
+                    </div>
+                </div>
+                <div class="row company-product-details-row">
+                    <div class="col-sm-3">
+                        <h4 class="company-product-details">Product logo</h4>
+                    </div>
+                    <div class="col-sm-3" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowProductLogoImageSubmitted($files, $event, $flow)">
+                        <div ng-if="!ctrl.product.Logo" flow-btn class="company-product-logo-add-container">
+                            <div class="company-product-logo-add-icon">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                        </div>
+                        <img ng-if="ctrl.product.Logo" flow-btn class="img-circle company-product-logo" ng-src="{{ctrl.getProductLogo()}}">
+                    </div>
+                </div>
+                <div class="row company-product-details-row">
+                    <div class="col-sm-3">
+                        <h4 class="company-product-details" style="line-height: normal;">Description</h4>
+                    </div>
+                    <div class="col-sm-5">
+                        <textarea class="company-product-description" ng-model="ctrl.product.Description"></textarea>
+                    </div>
+                </div>
+                <!--<div class="row company-product-details-row">
+                    <div class="col-sm-3">
+                        <h4 class="company-product-details">Clients</h4>
+                    </div>
+                    <div class="col-sm-9">
+                        <ul class="list-inline company-product-customers-list">
+                            <li ng-repeat="productCustomer in ctrl.productCustomers" class="list-inline-item company-product-customer" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowProductCustomerLogoImagesSubmitted($files, $event, $flow, productCustomer)">
+                                <img flow-btn class="img-circle company-product-customer-logo" ng-src="api/GetCustomerLogo?id={{productCustomer.ID}}">
+                            </li>
+                            <li class="list-inline-item company-product-customer" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowProductCustomerLogoImagesSubmitted($files, $event, $flow, null)">
+                                <div flow-btn class="company-product-logo-add-container">
+                                    <div class="company-product-logo-add-icon">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="company-product-controls">
+                            <button type="button" class="btn btn-default company-profile-save" ng-click="ctrl.updateProductDetails()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="editProductGroupsVisbleToModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title follower-groups-modal-title" id="modal-title">Group visibility for {{ctrl.product.Name}}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-repeat="followerGroup in ctrl.followerGroups track by followerGroup.ID" class="row">
+            <div class="col-sm-8 follower-groups-modal-follower-group">{{followerGroup.Name}}</div>
+            <div class="col-sm-4">
+                <input type="checkbox" ng-model="followerGroup.Selected" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="follower-groups-modal" type="button" ng-click="ctrl.ok()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>OK</button>
+        <button class="follower-groups-modal" type="button" ng-click="ctrl.cancel()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Cancel</button>
+    </div>
+</script>

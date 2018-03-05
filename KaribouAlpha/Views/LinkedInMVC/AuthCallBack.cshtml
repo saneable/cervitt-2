@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cervitt</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/normalize.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/bootstrap.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/main.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/css/font-awesome.min.css")" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/css/crevitt-font.css")">
+
+    <script type="text/javascript">
+        var _id = '@ViewBag.Id'
+        var _token = '@ViewBag.Token'
+        var _Result = '@ViewBag.Result'
+        var _hasLocalAcc = '@ViewBag.haslocalaccount'
+        function onload() {
+            var obj = new Object();
+            obj.email = _id;
+            obj.access_token = _token;
+            obj.Result = _Result;
+            obj.haslocalaccount = _hasLocalAcc;
+            window.opener.$windowScope.authCompletedCBLNK(obj);
+            window.close();
+        }
+    </script>
+</head>
+
+@if (ViewBag.Result)
+{
+    <body onload="onload()"></body>
+}
+else
+{
+    <body>
+        <div class="container-fluid home-bg">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4 regestration-section">
+                    <div class="registration-box">
+                        <div class="registration-boxInner text-center">
+                            <form name="myForm" class="form-horizontal" novalidate>
+                                <div class="col-sm-12 custom_msg_form">
+                                    <div class="error" ng-show="Error">
+                                        <i class="fa fa-exclamation-triangle"></i>&nbsp;@ViewBag.ErrorMessage
+                                    </div>
+                                    <button type="button" class="onboarding-start wid_auto" onclick="window.close();">Close</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+}
+</html>

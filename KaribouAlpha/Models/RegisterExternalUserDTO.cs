@@ -1,0 +1,15 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace KaribouAlpha.Models
+{
+    public class RegisterExternalUserDTO
+    {
+        [Required]
+        public String Email { get; set; }
+        [Required]
+        public String FirstName { get; set; }
+        [Required]
+        public String LastName { get; set; }
+    }
+}

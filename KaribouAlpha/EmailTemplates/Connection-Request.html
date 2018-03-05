@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Connection Request</title>
+    <style>
+        @media screen { 
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+            }
+        }
+    </style>
+</head>
+<body style="background-color:#FFFFFF;">
+    <table width="650" border="0" cellpadding="0" cellspacing="0" style="margin:0px auto;">
+        <tr>
+            <td valign="top">
+                <table width="650" border="0" cellpadding="0" cellspacing="0" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:14px; color: #FFFFFF; background: url('https://kariboualpha.azurewebsites.net/img/home_bg.png')">
+                    <tr>
+                        <td colspan="2" valign="top"><img src="https://kariboualpha.azurewebsites.net/img/logo-home-full.png" width="203" height="94" /></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding: 50px 40px 40px 40px;">
+                            <span style="font-size: 18px; color: #000000;"><%companyName%></span>
+                            <br>
+                            <span style="font-size: 26px;">Connection request</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" bgcolor="#FFFFFF" style="padding: 50px 40px 0px 40px;">
+                            <span style="font-size: 16px; color: #000000">
+                                Hello <%companyOwnerUserName%>,
+                                <br>
+                                This is <%connectionRequestUserName%> from <%connectionRequestUserCompanyName%> and I would like to 
+                                connect with you on Cervitt.
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" bgcolor="#FFFFFF" style="padding: 50px 40px 90px 40px;">
+                            <table width="560" border="0" cellpadding="0" cellspacing="0" style="margin:0px auto; background-color: rgb(226, 246, 252)">
+                                <tr>
+                                    <td valign="top" style="padding: 20px 20px 0px 20px;">
+                                        <img src="https://kariboualpha.azurewebsites.net/api/GetUserProfileImage?userId=<%connectionRequestUserId%>" style="display: block; border-radius: 50%; width: 70px; height: 70px;">
+                                    </td>
+                                    <td colspan="2" valign="top" style="padding: 20px 20px 0px 0px;">
+                                        <span style="font-size: 26px; color: #000000;">
+                                            <%connectionRequestUserName%>
+                                        </span>
+                                        <br>
+                                        <span style="font-size: 18px; color: rgb(159, 172, 175);">
+                                            <%connectionRequestUserTitle%> at <%connectionRequestUserCompanyName%>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" style="padding: 20px 20px 20px 20px;">&nbsp;</td>
+                                    <td valign="top" style="padding: 20px 20px 0px 0px; width: 140px;">
+                                        <a style="display: block; font-size: 18px; text-decoration: none; text-align: center; color: #FFFFFF; line-height: 48px; width: 120px; height: 48px; background-color: rgb(0, 172, 49); border-bottom: 5px solid rgb(0, 130, 37);" href="https://cervitt.co.uk/personal_connections">Approve »</a>
+                                    </td>
+                                    <td valign="top" align="left" style="padding: 20px 0px 20px 0px;">
+                                        <a style="display: block; font-size: 18px; text-decoration: none; text-align: left; color: rgb(159, 172, 175); line-height: 48px;" href="https://cervitt.co.uk/company/<%connectionRequestUserCompanyId%>">View company »</a>
+                                    </td>
+                                </tr>
+                            </table>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" bgcolor="#FFFFFF" style="padding: 10px 0px 50px 0px; border-top: 1px solid rgb(204, 204, 204);">
+                            <span style="font-size:12px; color: rgb(140, 140, 140);">
+                                To change your notification preferences, please click here: <a href="https://cervitt.co.uk/personal_profile_notifications" style="color: rgb(67, 195, 100); text-decoration: none;">https://cervitt.co.uk</a>
+                                <br>
+                                <br>
+                                You received this notification because you have registered as a user on Cervitt. If you are receiving this email incorrectly please 
+                                <a href="https://cervitt.co.uk" style="color: rgb(67, 195, 100); text-decoration: none;">click here</a>.
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

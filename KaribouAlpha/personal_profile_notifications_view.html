@@ -1,0 +1,161 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row account-personal-tabs-row">
+            <div class="col-sm-12 account-personal-tabs-col">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="personalProfileDetails">Details</a></li>
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="personalProfileNotifications">Email notifications</a></li>
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="personalProfileSocialMedia">Social media</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row account-personal-details-main-row">
+            <div class="col-sm-3 account-personal-links-left">
+                <ul class="account-personal-links-left">
+                    <li ng-hide="ctrl.individualFlag" class="account-personal-link-left"><a class="account-personal-link-left" ui-sref="companyProfileDetails">Company profile</a></li>
+                    <li class="account-personal-link-left"><a class="account-personal-link-left active" ui-sref="personalProfileDetails">Personal profile</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 account-personal-notifications-main-col">
+                <div ng-show="ctrl.hasConfirmation" class="row">
+                    <div class="col-sm-10 confirmation-col">
+                        <div class="confirmation">
+                            <i class="fa fa-check-circle"></i>&nbsp;{{ctrl.confirmationMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.hasError" class="row">
+                    <div class="col-sm-10 error-col">
+                        <div class="error">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ctrl.errorMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7 account-personal-notifications-prompt">
+                        <p class="account-personal-notifications-prompt">Choose the emails that you would like to receive:</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <p class="account-personal-notifications-action-header">daily</p>
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <p class="account-personal-notifications-action-header">weekly</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <p class="account-personal-notifications-action-header">monthly</p>
+                    </div>
+                </div>
+                <div class="row account-personal-notifications-row">
+                    <div class="col-sm-8">
+                        <p class="account-personal-notifications">Connection requests</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionRequests" ng-model="ctrl.user.ConnectionRequests" ng-value="0">
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionRequests" ng-model="ctrl.user.ConnectionRequests" ng-value="1">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionRequests" ng-model="ctrl.user.ConnectionRequests" ng-value="2">
+                    </div>
+                </div>
+                <div class="row account-personal-notifications-row">
+                    <div class="col-sm-8">
+                        <p class="account-personal-notifications">Connection personal suggestions</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionPersonalSuggestions" ng-model="ctrl.user.ConnectionPersonalSuggestions" ng-value="0">
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionPersonalSuggestions" ng-model="ctrl.user.ConnectionPersonalSuggestions" ng-value="1">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionPersonalSuggestions" ng-model="ctrl.user.ConnectionPersonalSuggestions" ng-value="2">
+                    </div>
+                </div>
+                <div class="row account-personal-notifications-row">
+                    <div class="col-sm-8">
+                        <p class="account-personal-notifications">Connection company suggestions</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionCompanySuggestions" ng-model="ctrl.user.ConnectionCompanySuggestions" ng-value="0">
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionCompanySuggestions" ng-model="ctrl.user.ConnectionCompanySuggestions" ng-value="1">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionCompanySuggestions" ng-model="ctrl.user.ConnectionCompanySuggestions" ng-value="2">
+                    </div>
+                </div>
+                <div class="row account-personal-notifications-row">
+                    <div class="col-sm-8">
+                        <p class="account-personal-notifications">Connection updates</p>
+                        <p class="account-personal-notifications-short-description">Files added, changes, news posts</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionUpdates" ng-model="ctrl.user.ConnectionUpdates" ng-value="0">
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionUpdates" ng-model="ctrl.user.ConnectionUpdates" ng-value="1">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="connectionUpdates" ng-model="ctrl.user.ConnectionUpdates" ng-value="2">
+                    </div>
+                </div>
+                <div class="row account-personal-notifications-row">
+                    <div class="col-sm-8">
+                        <p class="account-personal-notifications">Feedback</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="feedback" ng-model="ctrl.user.Feedback" ng-value="0">
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <input type="radio" name="feedback" ng-model="ctrl.user.Feedback" ng-value="1">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="feedback" ng-model="ctrl.user.Feedback" ng-value="2">
+                    </div>
+                </div>
+                <div class="row account-personal-notifications-row">
+                    <div class="col-sm-8">
+                        <p class="account-personal-notifications">Your company page stats</p>
+                        <p class="account-personal-notifications-short-description">Visits, downloads, people, sectors, roles etc.</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="companyPageStats" ng-model="ctrl.user.CompanyPageStats" ng-value="0">
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <input type="radio" name="companyPageStats" ng-model="ctrl.user.CompanyPageStats" ng-value="1">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="companyPageStats" ng-model="ctrl.user.CompanyPageStats" ng-value="2">
+                    </div>
+                </div>
+                <div class="row account-personal-notifications-last-row">
+                    <div class="col-sm-8">
+                        <p class="account-personal-notifications">Cervitt news &amp; tips</p>
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="cervittNewsAndTips" ng-model="ctrl.user.CervittNewsAndTips" ng-value="0">
+                    </div>
+                    <div class="col-sm-2 account-personal-notifications-actions-col">
+                        <input type="radio" name="cervittNewsAndTips" ng-model="ctrl.user.CervittNewsAndTips" ng-value="1">
+                    </div>
+                    <div class="col-sm-1 account-personal-notifications-actions-col">
+                        <input type="radio" name="cervittNewsAndTips" ng-model="ctrl.user.CervittNewsAndTips" ng-value="2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="button" class="btn btn-default account-personal-notifications-save" ng-click="ctrl.updateMyEmailNotificationFrequencies()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>

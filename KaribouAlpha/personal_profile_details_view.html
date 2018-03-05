@@ -1,0 +1,132 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row account-personal-tabs-row">
+            <div class="col-sm-12 account-personal-tabs-col">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="personalProfileDetails">Details</a></li>
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="personalProfileNotifications">Email notifications</a></li>
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="personalProfileSocialMedia">Social media</a></li>
+                </ul>
+            </div>
+        </div>
+        <form name="myForm" novalidate>
+            <div class="row account-personal-details-main-row">
+                <div class="col-sm-3 account-personal-links-left">
+                    <ul class="account-personal-links-left">
+                        <li ng-hide="Individual" class="account-personal-link-left"><a class="account-personal-link-left" ui-sref="companyProfileDetails">Company profile</a></li>
+                        <li class="account-personal-link-left"><a class="account-personal-link-left active" ui-sref="personalProfileDetails">Personal profile</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-8 account-personal-details-main-col">
+                    <div ng-show="ctrl.hasConfirmation" class="row">
+                        <div class="col-sm-10 confirmation-col">
+                            <div class="confirmation">
+                                <i class="fa fa-check-circle"></i>&nbsp;{{ctrl.confirmationMessage}}
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="ctrl.hasError" class="row">
+                        <div class="col-sm-10 error-col">
+                            <div class="error">
+                                <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ctrl.errorMessage}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details-company-logo">Profile photo</label>
+                        <div class="col-sm-5 account-personal-details" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowFilesSubmitted($files, $event, $flow)">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a flow-btn href="javascript:void(0)">
+                                        <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getUserProfileImage()}}" alt="{{ctrl.user.UserName}}">
+                                    </a>
+                                </div>
+                                <div ng-show="hasPersonalLogo" class="media-body">
+                                    <h4 flow-btn style="cursor: pointer;" class="media-heading account-company-details-media-heading">Update&nbsp;&nbsp;<i class="fa fa-pencil"></i></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">Firstname</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <input type="text" name="FirstName" id="FirstName" class="form-control account-personal-details" ng-model="ctrl.user.FirstName" placeholder="" required ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.FirstName)" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">Surname</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <input type="text" name="LastName" id="LastName" class="form-control account-personal-details" ng-model="ctrl.user.LastName" placeholder="" required ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.LastName)" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">Email</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <input type="email" class="form-control account-personal-details" ng-blur="errorEmailInvalid=myForm.Email.$error.email" ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.Email)"  name="Email" id="Email" ng-model="ctrl.user.Email" placeholder="" required>
+                            <span class="error" style="color:red" ng-show="errorEmailInvalid">
+                                Not valid email!
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">Mobile</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <input type="text" name="mobile" id="mobile" ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.mobile)" class="form-control account-personal-details" ng-model="ctrl.user.PhoneNumber" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">Country</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle account-company-details-sector-selection" type="button" id="ddlCountry" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {{ctrl.user.Country}}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li ng-repeat="country in ctrl.countries"><a href="javascript:void(0)" ng-click="ctrl.setUserCountry(country.name)">{{country.name}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">City/Town</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <input type="text" name="citytown" id="citytown" class="form-control account-personal-details" ng-model="ctrl.user.Town" placeholder="" required ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.citytown)">
+                        </div>
+                    </div>
+                    <div class="row account-personal-details-separator-row">
+                    </div>
+                    <div class="row">
+                        <p class="col-sm-3 account-personal-details-company">Company</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">Company</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <input type="text" class="form-control account-personal-details" ng-model="ctrl.user.Company" placeholder="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details">Job role</label>
+                        <div class="col-sm-5 account-personal-details">
+                            <input type="text" class="form-control account-personal-details" ng-model="ctrl.user.JobTitle" placeholder="">
+                        </div>
+                    </div>
+                    <div class="row account-personal-details-separator-row">
+                    </div>
+                    <div class="row account-personal-details-delete-account-row">
+                        <label class="col-sm-3 account-personal-details-delete-account">Delete account</label>
+                        <div class="col-sm-5 account-personal-details-delete-account">
+                            <a href="#"><i class="fa fa-trash account-personal-details-delete-icon"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button type="button" class="btn btn-default account-personal-details-save" ng-click="ctrl.updateMyPersonalProfile()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<footer></footer>

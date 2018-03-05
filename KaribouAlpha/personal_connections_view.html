@@ -1,0 +1,85 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row connections-connection-form-row">
+            <div class="col-sm-3 connections-connection-count-col">
+                <p class="connections-connection-count">{{ctrl.followers.length}} connections</p>
+            </div>
+            <div class="col-sm-2 pull-right">
+                <div class="dropdown pull-right connection-sort-selection">
+                    <button class="btn btn-default dropdown-toggle connection-sort-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Recently added
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-1 pull-right connections-connection-sort-col">
+                <p class="connections-connection-sort-label">Sort by</p>
+            </div>
+            <div class="col-sm-2 pull-right connections-search-col">
+                <div class="input-group">
+                    <span class="input-group-addon connections-search-icon">
+                        <i class="fa fa-search connections-search-icon"></i>
+                    </span>
+                    <input type="text" id="searchConenctions" ng-model="ctrl.personalConnectionSearchString" class="form-control connections-search-input-text" placeholder="Search connections" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 connections-links-left">
+                <ul class="connections-links-left">
+                    <li class="connections-link-left"><a class="connections-link-left" ui-sref="companyConnections">Companies</a></li>
+                    <li class="connections-link-left"><a class="connections-link-left active" ui-sref="personalConnections">People</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div ng-repeat="follower in ctrl.followers | filterPersonalConnection:ctrl.personalConnectionSearchString track by follower.ID" class="row connections-connection-row">
+                    <div class="col-sm-7 connections-connection-col">
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object img-circle connections-connection-avatar" ng-src="api/GetUserProfileImage?userId={{follower.UserID}}" alt="{{ctrl.getConnectionUserDisplayName(connection)}}">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading connections-connection-media-heading">{{ctrl.getFollowerUserDisplayName(follower)}}</h4>
+                                <p class="connections-connection-media-body">{{follower.UserJobTitle}} at {{follower.UserCompanyDisplayName}}</p>
+                                <button ng-show="follower.Status === 0" ng-click="ctrl.acceptRequest(follower)" class="connections-connection-accept" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Accept</button>
+                                <button ng-show="follower.Status === 0" ng-click="ctrl.declineRequest(follower)" class="connections-connection-decline" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Decline</button>
+                                <button ng-show="follower.Status === 1" ng-click="ctrl.removeConnection(follower)" class="connections-connection-decline" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 connections-connection-updates-col">
+                        <span class="connections-connection-groups">Groups: {{ctrl.getFollowerGroupDisplay(follower)}}</span>
+                    </div>
+                    <div class="col-sm-1 connections-connection-updates-col">
+                        <span class="fa fa-pencil connections-connection-member-edit-icon" ng-click="ctrl.editFollowerGroups(follower)"></span>
+                    </div>
+                    <div class="col-sm-2 connections-connection-updates-col">
+                        <p class="connections-connection-updates"><span class="badge connections-connection-updates-badge">15</span>Updates since last visit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="editFollowerGroupsModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title follower-groups-modal-title" id="modal-title">Group membership for {{ctrl.getFollowerUserDisplayName(ctrl.follower)}}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-repeat="followerGroup in ctrl.followerGroups track by followerGroup.ID" class="row">
+            <div class="col-sm-8 follower-groups-modal-follower-group">{{followerGroup.Name}}</div>
+            <div class="col-sm-4">
+                <input type="checkbox" ng-model="followerGroup.Selected" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="follower-groups-modal" type="button" ng-click="ctrl.ok()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>OK</button>
+        <button class="follower-groups-modal" type="button" ng-click="ctrl.cancel()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Cancel</button>
+    </div>
+</script>

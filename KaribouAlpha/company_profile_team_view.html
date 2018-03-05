@@ -1,0 +1,236 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row account-company-tabs-row">
+            <div class="col-sm-12 account-company-tabs-col">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileDetails">Details</a></li>
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="companyProfileTeam">Team</a></li>
+                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileFollowerGroups">Follower groups</a></li>-->
+                    <!--<li role="presentation"><a class="company-profile-tab"ui-sref="companyProfileNotifications">Email notifications</a></li>-->
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileSocialMedia">Social media</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row account-company-details-main-row">
+            <div class="col-sm-3 account-company-links-left">
+                <ul class="account-company-links-left">
+                    <li class="account-company-link-left"><a class="account-company-link-left active" ui-sref="companyProfileDetails">Company profile</a></li>
+                    <li class="account-company-link-left"><a class="account-company-link-left" ui-sref="personalProfileDetails">Personal profile</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 account-company-members-main-col">
+                <div ng-show="ctrl.hasConfirmation" class="row">
+                    <div class="col-sm-10 account-company-members-confirmation-col">
+                        <div class="confirmation">
+                            <i class="fa fa-check-circle"></i>&nbsp;{{ctrl.confirmationMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.hasError" class="row">
+                    <div class="col-sm-10 account-company-members-error-col">
+                        <div class="error">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ctrl.errorMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 account-company-member-count-col">
+                        <p class="account-company-member-count">You have <span style="font-weight: 400">{{ctrl.companyMembers.length}} members</span> in your team.</p>
+                    </div>
+                    <div class="col-sm-2 mart20">
+                        <button ng-click="ctrl.openImportCsvPopUp()" class="btn btn-default btn-csv"><i class="fa fa-cloud-upload"></i>&nbsp; Import .csv</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="">
+                            <div class="col-sm-12 account-company-add-member-col">
+                                <div class="input-group account-company-add-member">
+                                    <input type="text" class="form-control account-company-add-member" ng-model="ctrl.userSearchQuery" placeholder="Add team member" aria-describedby="basic-addon2">
+                                    <span ng-click="ctrl.searchUsersForCompanyTeamMembers()" style="cursor: pointer;" class="input-group-addon account-company-add-member" id="basic-addon2"><i class="fa fa-search"></i></span>
+                                </div>
+                                <div ng-show="ctrl.noUsersFound || ctrl.usersFromSearch.length > 0" class="account-company-add-member-search-results-container">
+                                    <div ng-repeat="user in ctrl.usersFromSearch" class="row account-company-add-member-search-results-row">
+                                        <div class="text-space col-sm-9">
+                                            <h4 class="account-company-add-member-search-results-user-name">{{ctrl.getUserDisplayName(user)}}</h4>
+                                        </div>
+                                        <div class="icon_space col-sm-3">
+                                            <div ng-click="ctrl.addUserToTeam(user)" class="account-company-add-member-search-results-add-button"><i class="fa fa-plus account-company-add-member-search-results-add-icon"></i></div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="ctrl.noUsersFound" class="account-company-add-member-search-results-row">
+                                        <button type="button" class="btn btn-default btn-csv btn-full" ng-click="ctrl.openInviteByEmailPopUp()"><i class="fa fa-envelope"></i>&nbsp; Invite via email</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.companyMembers.length > 0" class="row">
+                    <div class="col-sm-3 col-sm-offset-8 account-company-members-action-label">
+                        Members role
+                    </div>
+                    <div class="col-sm-1 account-company-members-action-label">
+                        Remove
+                    </div>
+                </div>
+                <div ng-repeat="companyMember in ctrl.companyMembers track by companyMember.ID" class="row account-company-member-row">
+                    <div class="col-sm-5 account-company-member-col">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="javascript:void(0)">
+                                    <img class="media-object img-circle account-company-member-profile-image" ng-src="/api/GetUserProfileImage?userId={{companyMember.UserID}}" alt="{{ctrl.getCompanyMemberUserDisplayName(companyMember)}}">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading account-company-member-media-heading">{{ctrl.getCompanyMemberUserDisplayName(companyMember)}}</h4>
+                                <p class="account-company-member-media-body">{{companyMember.UserLevel}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 account-company-member-edit-action">
+                        <a href="javascript:void(0)" ng-click="ctrl.editCompanyMember(companyMember)" uib-popover-template="'companyMemberDetailsPopover.html'" popover-is-open="companyMember.Editing" popover-trigger="'none'" popover-placement="left" popover-append-to-body="true"><i class="fa fa-pencil account-company-member-edit-icon"></i></a> <span class="account-company-member-title">{{companyMember.Role}}</span>
+                    </div>
+
+
+                    <div class="col-sm-1 account-company-member-delete-action">
+                        <a href="javascript:void(0)" ng-click="ctrl.deleteCompanyMember(companyMember)"><i class="fa fa-trash account-company-member-delete-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="ModalInstanceCtrl as $ctrl" class="modal-demo">
+        <script type="text/ng-template" id="myModalContent.html">
+
+            <div class="modal-body" id="modal-body">
+
+                <div class="row" ng-show="$ctrl.ShowError">
+                    <div class="error">
+                        <i class="fa fa-exclamation-triangle"></i>&nbsp;{{$ctrl.ErrorMessage}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="">Invite via email</h2>
+                        <h3> team members that aren't on Cervitt via the form below</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="text" name="InviteUser" autocomplete="off" ng-model="$ctrl.InviteUser" class="form-control account-personal-details" placeholder="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="p_italic">To invite mutiple people via email separate with a , i.e ben@google.com, sue@helloworld.com</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button class="onboarding-start" ng-click="$ctrl.inviteByEmailAddress()">Invite</button>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+            </div>-->
+        </script>
+    </div>
+
+    <div ng-controller="ModalImportCSVCtrl as $ctrl1" class="modal-demo1">
+        <script type="text/ng-template" id="myModalImportCSV.html">
+            <div class="modal-body" id="modal-body">
+                <div class="row" ng-show="$ctrl1.ShowError">
+                    <div class="error">
+                        <i class="fa fa-exclamation-triangle"></i>&nbsp;{{$ctrl1.ErrorMessage}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="">Invite via CSV</h2>
+                        <h3>You can import or invite team members via uploading a .csv of email addresses</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>If an email isn't registered on Cervitt they will receive an email inviting them to join. When they do will be added to your team.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="upload-btn-wrapper">
+                            <button class="btn-upload">Choose Files</button>
+                            <input type="file" file-reader="fileContent" class="btn-upload-input" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row" ng-show="$ctrl1.fileUploadedCompleted">
+                    <div class="col-sm-12">
+                        <strong>File is imported. You can start importing.</strong>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <button class="onboarding-start" ng-click="$ctrl1.inviteByImportCSV()">Import</button>
+                    </div>
+                </div>
+            </div>  
+        </script>
+    </div>
+
+</main>
+<script type="text/ng-template" id="companyMemberDetailsPopover.html">
+    <div ng-class="(userlevelClass)?'container-fluid account-company-member-details-popover userlevelClass':'container-fluid account-company-member-details-popover'">
+            <div class="row"> 
+                <label class="cust_title">User Level</label>
+            </div> 
+ 
+            <div class="row">
+                <div ng-class="(companyMember.ProductsOfUser.length>0)?'col-sm-4 right_checkbox_common':'col-sm-4'">
+                    <div class="row" ng-repeat="uLevel in companyMember.userLevels">
+                        <!-- <div class="col-sm-2">
+                            <input type="radio" class="cust_radiobtn" ng-click="ctrl.showProductListToManage(companyMember)" name="UserLevelId" id="UserLevelId" ng-model="companyMember.UserLevelId" ng-value="uLevel.Id" />
+                        </div>
+                        <div class="col-sm-4">
+                            {{uLevel.Name}}
+                        </div> -->
+
+                        <label class="cust_radiobtn">{{uLevel.Name}}
+                            <input type="radio" class="cust_radiobtn" ng-click="ctrl.showProductListToManage(companyMember)" name="UserLevelId" id="UserLevelId" checked="checked" ng-model="companyMember.UserLevelId" ng-value="uLevel.Id" /> 
+                          <span class="checkmark"></span>
+                        </label> 
+                    </div>
+                </div>
+                <div ng-class="(companyMember.ProductsOfUser.length>0)?'col-sm-8 right_checkbox_common right_checkbox':'col-sm-8'" ng-if="companyMember.ProductsOfUser.length>0">
+                    <div class="row" ng-repeat="uProduct in companyMember.ProductsOfUser">
+                        <!-- <div class="col-sm-2">
+                            <input type="checkbox" class="cust_checkboxes" checklist-model="companyMember.ProductIdSelected" checklist-value="uProduct.ID">
+
+                        </div>
+                        <div class="col-sm-2">
+                            {{uProduct.Name}}
+                        </div> -->
+
+                        <div class="checkbox_list">
+                            <label class="cust_checkboxbtn">{{uProduct.Name}}
+                              <input type="checkbox" class="cust_checkboxes" checked="checked" checklist-model="companyMember.ProductIdSelected" checklist-value="uProduct.ID">
+                            <span class="checkmark"></span>
+                            </label> 
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.updateCompanyMember(companyMember)" class="btn btn-default account-company-member-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,172 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <br>
+                <span ng-click="ctrl.skipOnboarding()" class="onboarding-skip">Skip and jump straight in »</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-7 col-sm-offset-3 onboarding-col">
+                <div class="row row-eq-height">
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-star-o onboarding-icon-sm"></span>
+                                    </div>
+                                    <!--<h4 class="onboarding-item-heading">Company</h4>-->
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12">
+                                <h4 class="onboarding-item-heading">Company</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-folder-open-o onboarding-icon-sm"></span>
+                                    </div>
+                                    <h4 class="onboarding-item-heading">Products</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-cloud-upload onboarding-icon-sm"></span>
+                                    </div>
+                                    <h4 class="onboarding-item-heading">Upload files</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 onboarding-item-col">
+                        <div class="onboarding-item-container">
+                            <div class="onboarding-icon-container-sm-pending">
+                                <span class="fa fa-users onboarding-icon-sm"></span>
+                            </div>
+                            <h4 class="onboarding-item-heading">Connections</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text-center">
+                        <div class="row">
+                            <div flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowProductFilesSubmitted($files, $event, $flow)" class="upload-container-col">
+                                <button flow-btn type="button" class="btn btn-default upload-button">Choose files&nbsp;&nbsp;&nbsp;<i class="fa fa-plus"></i></button>
+                                &nbsp;or&nbsp;
+                                <button ng-click="ctrl.toggleUrlUploadPopover()" type="button" class="btn btn-default upload-button" uib-popover-template="'urlUploadPopover.html'" popover-is-open="ctrl.showUrlUploadPopover" popover-trigger="'none'" popover-append-to-body="true">Upload from URL&nbsp;&nbsp;&nbsp;<i class="fa fa-cloud-upload"></i></button>
+                            </div>
+                        </div>
+                        <div ng-if="ctrl.productFiles.length > 0" class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <p class="upload-files-uploaded"><span style="font-weight: 400;">{{ctrl.productFiles.length}} files</span> have been uploaded</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="productFile in ctrl.productFiles" class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="upload-file-separator-row">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowProductFileImageSubmitted($files, $event, $flow, productFile)">
+                                <img class="media-object img-square upload-file-preview-image" style="position: relative;" ng-src="{{ctrl.getProductFileImage(productFile)}}" alt="Product File">
+                                <a flow-btn href="javascript:void(0)"><h2 class="upload-file-image-edit">Edit preview<i class="fa fa-pencil upload-file-preview-edit-icon"></i></h2></a>
+                            </div>
+                            <div class="col-sm-5">
+                                <h4 class="media-heading upload-file-media-heading">{{productFile.Name}}<a href="javascript:void(0)" ng-click="ctrl.toggleEditProductFile(productFile)" uib-popover-template="'productFileDetailsPopover.html'" popover-is-open="productFile.Editing" popover-trigger="'none'" popover-append-to-body="true"><i class="fa fa-pencil upload-file-preview-edit-icon"></i></a></h4>
+                                <p class="upload-file-media-body">{{productFile.Description}}</p>
+                                <div class="dropdown upload-file-type-selection">
+                                    <button class="btn btn-default dropdown-toggle upload-file-type-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{ctrl.getProductFileCategoryName(productFile, 'Choose category')}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu srcollable-dropdown-menu">
+                                        <li ng-repeat="category in ctrl.productFileCategories"><a href="javascript:void(0)" ng-click="ctrl.setProductFileCategory(category, productFile)">{{category.name}}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown upload-file-type-selection">
+                                    <button class="btn btn-default dropdown-toggle upload-file-type-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{ctrl.getProductFileProductName(productFile, 'Choose product')}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="product in ctrl.products"><a href="javascript:void(0)" ng-click="ctrl.setProductFileProduct(product, productFile)">{{product.Name}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="ctrl.productFiles.length > 0" class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="upload-file-separator-row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4 text-center">
+                <button ng-click="ctrl.backStep()" class="onboarding-start spc50 back-btn" ng-disabled="ctrl.busyPrev"><span ng-show="ctrl.busyPrev" class="glyphicon glyphicon-refresh spinning"></span>Back</button>
+                <button ng-click="ctrl.nextStep()" class="onboarding-start" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Next</button>
+               
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="productFileDetailsPopover.html">
+    <div class="container-fluid upload-file-details-popover">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="productFile.Name" class="upload-file-title" placeholder="Title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <textarea type="text" ng-model="productFile.Description" class="upload-file-description" placeholder="Description"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.toggleEditProductFile(productFile)" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="urlUploadPopover.html">
+    <div class="container-fluid upload-file-details-popover" style="width: 400px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.uploadUrl" class="upload-file-title" placeholder="Link">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.getFileFromUrl()" class="btn btn-default upload-file-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>

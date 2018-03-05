@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Email Confirmation</title>
+    <style>
+        @media screen { 
+            @font-face {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+            }
+        }
+    </style>
+</head>
+<body style="background-color:#FFFFFF;">
+    <table width="650" border="0" cellpadding="0" cellspacing="0" style="margin:0px auto;">
+        <tr>
+            <td valign="top">
+                <table width="650" border="0" cellpadding="0" cellspacing="0" style="font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:14px; color: #FFFFFF; background: url('https://kariboualpha.azurewebsites.net/img/home_bg.png')">
+                    <tr>
+                        <td valign="top"><img src="https://kariboualpha.azurewebsites.net/img/logo-home-full.png" width="203" height="94" /></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding: 70px 65px 0px 65px;">
+                            <span style="font-size: 18px;">Account registration</span>
+                            <br>
+                            <span style="font-size: 26px;">Confirm your email</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding: 40px 65px 0px 65px;">
+                            <span style="font-size: 18px;">
+                                Thank you for registering with Cervitt. Please click the link below to confirm the email address you've registered in your account.
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" style="padding: 40px 65px 70px 65px;">
+                            <a style="display: block; font-size: 18px; text-decoration: none; text-align: center; color: #FFFFFF; line-height: 48px; width: 242px; height: 48px; background-color: rgb(0, 172, 49); border-bottom: 5px solid rgb(0, 130, 37);" href="https://kariboualpha.azurewebsites.net/ConfirmEmail?userId=<%userId%>&confirmationToken=<%confirmationToken%>">Confirm email address »</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" bgcolor="#FFFFFF" style="padding: 50px 20px 50px 20px;">
+                            <span style="font-size:12px; color: rgb(140, 140, 140);">
+                                To change your notification preferences, please click here: <a "https://cervitt.co.uk/personal_profile_notifications" style="color: rgb(67, 195, 100); text-decoration: none;">https://cervitt.co.uk</a>
+                                <br>
+                                <br>
+                                You received this notification because you have registered as a user on Cervitt. If you are receiving this email incorrectly please 
+                                <a href="https://cervitt.co.uk" style="color: rgb(67, 195, 100); text-decoration: none;">click here</a>.
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

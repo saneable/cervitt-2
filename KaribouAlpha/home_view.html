@@ -1,0 +1,239 @@
+﻿<head>
+    
+    <title>Product | Network | Social - Cervitt</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="page home-page">
+            <header>
+                <div id="pre-header" class="pre-header"  >
+                    <nav class="navbar">
+                        <form name="myForm" novalidate>
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a href="index.html"><img alt="Image" src="./img/logo-cervitt-main.svg"></a>
+                                <a href="index.html" class="mobile-logo" style="display: none;"><img alt="Image" src="./img/logo-cervitt-main.svg"></a>
+                            </div>
+                            <div class="quick_header">
+                                <div class="login_menu">
+
+                                    <div class="login_sectionInner">
+									 	
+                                        <span class="col-sm-4 login-wid" style="color:red" ng-show="LoginError">
+                                            {{errorMessage}}
+                                        </span>
+                                        
+                                        <div class="col-sm-4 login-wid">
+                                            <input type="email" class="login-email" ng-model="ctrl.loginData.userName" ng-blur="errorEmailInvalid=myForm.email.$error.email" ng-keypress="checkKeyPressEvent($event)" autocomplete="off" name="email" id="email" placeholder="Email">
+                                            <span class="error" style="color:red" ng-show="errorEmailInvalid || myForm.email.$error.minlength">
+                                                Not valid email!
+                                            </span>
+                                            <span class="error" style="color:red" ng-show="emailRequiredError">Email required</span>
+                                        </div>
+
+                                        <div class="col-sm-4 login-wid">
+                                            <input type="password" class="login-password" ng-minlength="6" ng-keypress="passwordRequiredError= false" ng-blur="miniLengthError=myForm.password.$error.minlength" ng-model="ctrl.loginData.password" name="password" id="password" placeholder="Password">
+                                            <span class="error" style="color:red" ng-show="miniLengthError">Minimum 6</span>
+                                            <span class="error" style="color:red" ng-show="passwordRequiredError">Password required</span>
+
+                                            <small><a href="/ForgotPassword">Forgot Password?</a></small>
+                                        </div>
+
+                                        <div class="col-sm-4 login-wid login-wid-check">
+                                            <label class="cust_checkbox">
+                                                remember me
+                                                <input checked="checked" type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <div class="mobile_login" style="display: none;">
+                                                <input type="submit" value="LogIn">Log In</button>
+                                                <a href="#"><i class="fa fa-times-circle close_login" aria-hidden="true"></i></a>
+                                            </div>
+
+                                        </div>
+
+
+                                    
+								</div>
+                                </div>
+
+                            </div>
+
+                            <div id="navbar" class="navbar-collapse collapse pull-right">
+                               
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="/">About</a></li>
+                                    <li><a ui-sref="pricing">Pricing</a></li>
+                                    <li><a ui-sref="demo">Demo</a></li>
+                                    <li><a ui-sref="registration">Register</a></li>
+                                    <li class="green-login"><button href="#" class="login-fix" ng-disabled="!myForm.$valid" ng-click="myForm.$valid && ctrl.login()">Login</button></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </nav>
+                </div>
+            </header>
+            
+            <div id="header" class="header">
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9 col-xs-12">
+                            <h1 class="title">Cervitt is a product oriented social networking service for modern b2b businesses.</h1>
+                            <p class="small-par">It’s purpose is to securely share product related information in one place, to keep business people informed in real time.. it enables interactive feedback at any stage of the product lifecycle (1-1 or in groups) to enhance customer experience and meet the needs of the market.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <section>
+            <!-- Swiper -->
+            <div id="crevitt-slider">
+                <div class="container">
+                    <div class="crevitt-slider">
+                        <div class="swiper-crevitt">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="k" class="icon"></div>
+                                            <p>Relevant & Real time</p>
+                                            <p class="font18">Relevant, personalised info in real time: Post & see products recently launched or planned (to clients or prospects)</p>
+                                        </div>
+                                    </div>
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="m" class="icon"></div>
+                                            <p>Showcase products</p>
+                                            <p class="font18">Showcase existing products: Stimulate your client base with the basics and ROI calculators/bus cases/cost vs Ben models</p>
+                                        </div>
+                                    </div>
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="i" class="icon"></div>
+                                            <p>Gather Feedback</p>
+                                            <p class="font18">Process manage: Gather feedback / Have your say. Adapt your product prior to launch or during its lifecycle.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="g" class="icon"></div>
+                                            <p>Educate</p>
+                                            <p class="font18">Post / View whitepapers, training videos, user guides, compliance/legislation.</p>
+                                        </div>
+                                    </div>
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="l" class="icon"></div>
+                                            <p>Referrals</p>
+                                            <p class="font18">Post / See relevant case studies and business recommendations. </p>
+                                        </div>
+                                    </div>
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="j" class="icon"></div>
+                                            <p>Insights</p>
+                                            <p class="font18">Get insights into products, customer behaviour and suggested business connections to improve your account management and sales.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="h" class="icon"></div>
+                                            <p>Follow best practise</p>
+                                            <p class="font18">Have guidance on best practise around product mktg.</p>
+                                        </div>
+                                    </div>
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="h" class="icon"></div>
+                                            <p>Follow best practise</p>
+                                            <p class="font18">Have guidance on best practise around product mktg.</p>
+                                        </div>
+                                    </div>
+                                    <div class="small-title col-sm-4">
+                                        <div class="production_slider">
+                                            <div data-icon="h" class="icon"></div>
+                                            <p>Follow best practise</p>
+                                            <p class="font18">Have guidance on best practise around product mktg.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-next-crevitt"><img alt="Image" src="./img/side-arrow.png" width="70" height="70"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div id="footer-gry" class="footer-gry">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            <p class="footer-title">Using Cervitt</p>
+                            <ul>
+                                <li><a href="/">About</a></li>
+                                <li><a href="pricing">Pricing</a></li>
+                                <li><a href="demo">Demo</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            <p class="footer-title">Legal</p>
+                            <ul>
+                                <li><a href="privacy">Privacy</a></li>
+                                <li><a href="security">Security</a></li>
+                                <li><a href="terms">Terms & Conditions</a></li>
+                                <li><a href="policy">Cookie policies</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-3 col-xs-6">
+                            <p class="footer-title">Get started</p>
+                            <ul>
+                                <li class="login-fix"><a href="#pre-header">Login</a></li>
+                                <li class=""><a href="registration">Register</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-6">
+                            <div class="add_btn"><a href="mailto:premium@cervitt.com"><span><img alt="Image" src="./img/icon-premium.svg"></span> Advertise your business through premium listings</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer-grn" class="footer-grn">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6"><a href="index.html" class="footer-logo"><img alt="Image" src="./img/logo-cervitt-footer.svg"></a></div>
+                        <div class="col-sm-6">
+                            <ul>
+                                <li><a href="mailto:info@cervitt.com">Contact us</a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        
+        <script type="text/javascript" src="js/swiper.min.js"></script>
+        <script type="text/javascript" src="js/custom.js"></script>
+        <script type="text/javascript">
+            document.getElementsByClassName('swiper-slide-active')[0].style.width = "918px";
+        </script>
+        <!-- <script type="text/javascript" src="js/custom.js"></script> -->
+    </div>
+</body>
+

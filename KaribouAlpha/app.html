@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="karibouAlphaApp">
+<head>
+    <!--<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <base href="/" />
+    <title>Cervitt</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+    <link type="text/css" rel="stylesheet" href="css/crevitt-font.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper.min.css">
+    <link type="text/css" rel="stylesheet" href="css/{{ cssname}}.css">
+    <link type="text/css" rel="stylesheet" href="css/{{ cssname }}.css">
+
+     <!--
+    <link rel="icon" type="image/png" href="/img/fav_32x32.png" sizes="32x32">
+    -->
+</head>
+<body flow-prevent-drop ng-cloak>
+    <header ui-view="header" ng-cloak></header>
+    <main ui-view="main" ng-cloak></main>
+    
+    <footer ui-view="footer" ng-cloak></footer>
+    <script type="text/javascript" src="Scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="Scripts/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="Scripts/MobileServices.Web.js"></script>
+    <script type="text/javascript" src="Scripts/angular-azure-mobile-service.js"></script>
+    <script type="text/javascript" src="Scripts/angular-local-storage.js"></script>
+    <script type="text/javascript" src="Scripts/event.min.js"></script>
+    <script type="text/javascript" src="Scripts/ng-flow-standalone.js"></script>
+    <script type="text/javascript" src="Scripts/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script type="text/javascript" src="Scripts/FileSaver.min.js"></script>
+    <script type="text/javascript" src="Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="Scripts/checklist-model.js"></script>
+    <!--
+    <script type="text/javascript" src="Scripts/angular-strap.js"></script>
+    <script type="text/javascript" src="Scripts/angular-strap.tpl.js"></script>
+    <script type="text/javascript" src="Scripts/moment.js"></script>
+    <script type="text/javascript" src="Scripts/ngAutocomplete.js"></script>
+    <script type="text/javascript" src="Scripts/md5.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.cropit.js"></script>
+    <script type="text/javascript" src="Scripts/scrollreveal.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.matchHeight.js"></script>
+    -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/app.routes.js"></script>
+    <div ng-if="loaderact" style="position: fixed; width: 100%;height: 100%;z-index: 9999;background: rgba(0, 0, 0, .5) !important;   left: 0;   top: 0;">
+	    <i class="icon-loader spin" style="position: absolute;   width: 100%;    left: 50%;    top: 50%;    color: #fff !important;">Loading…</i>
+    <div>
+</body>
+</html>

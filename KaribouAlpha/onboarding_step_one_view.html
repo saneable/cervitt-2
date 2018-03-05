@@ -1,0 +1,409 @@
+﻿ <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<style type="text/css">
+    .dropdown-menu {
+        width: 100% !important;
+    }
+
+    .alert-danger-new {
+        color: #a94442;
+        /*background-color: #f2dede;*/
+        border-color: #ebccd1;
+        float: left;
+        line-height: 28px;
+    }
+
+    .tags {
+    }
+
+        .tags .tag {
+            border-radius: 6px;
+            background-color: #EFEFEF;
+            border: 1px solid #DDD;
+            padding: 5px;
+            margin-right: 10px;
+            float: left;
+            margin-bottom: 8px;
+            color: #909090;
+        }
+
+           /* .tags .tag:hover {
+                color: #41a534;
+                text-decoration: none;
+            }*/
+
+    input {
+        margin-bottom: 0px !important;
+    }
+
+    .tagsbutton {
+        background-color: #4CAF50; /* Green */
+        padding: 3px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        background-color: white;
+        color: black;
+        border: 2px solid #4CAF50;
+    }
+</style>
+
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <br>
+                <span ng-click="ctrl.skipOnboarding()" class="onboarding-skip">Skip and jump straight in »</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 onboarding-col start_step_center_small">
+                <div class="row row-eq-height">
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container ">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-star-o onboarding-icon-sm"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Select Company</h4></div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container ">
+                                    <div class="onboarding-icon-container-sm-pending">
+                                        <span class="fa fa-folder-open-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Products</h4></div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container ">
+                                    <div class="onboarding-icon-container-sm-pending">
+                                        <span class="fa fa-id-card-o onboarding-icon-sm"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Personal Details</h4></div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container ">
+                                    <div class="onboarding-icon-container-sm-pending">
+                                        <span class="fa fa-users onboarding-icon-sm"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Connections</h4></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pad_btm">
+            <div class="col-sm-8 col-sm-offset-2 text-center green_circle_main">
+                <div class="col-sm-4 green_circle_main_bg"><input type="radio" value="Search Company" ng-click="ctrl.companySelectionChanged()"  ng-model="ctrl.companySelectionStatus.CompanySelectionType" ng-value="1" /><div class="circle_center"><img src="/img/gren_search.jpg" width="90" height="auto"><span class="green_circle">Search Company</span> </div></div>
+                <div class="col-sm-4 green_circle_main_bg"><input type="radio" value="Add New Company"  ng-click="ctrl.companySelectionChanged()" ng-model="ctrl.companySelectionStatus.CompanySelectionType" ng-value="2" /><div class="circle_center"><img src="/img/green_plus.jpg" width="90" height="auto"><span class="green_circle">Add New Company</span> </div></div>
+                <div class="col-sm-4 green_circle_main_bg">
+                    <input type="radio" value="I am Individual"  ng-click="ctrl.companySelectionChanged()" ng-model="ctrl.companySelectionStatus.CompanySelectionType" ng-value="3" /><div class="circle_center"><img src="/img/green_hand.jpg" width="90" height="auto"><span class="green_circle">I'm an Individual</span> </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="ctrl.companySelectionStatus.CompanySelectionType == '1'">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <div class="search_box col-sm-6 col-xs-6">
+                    <editable-select></editable-select>
+                    <div class="input-group onboarding-connection-search">
+
+
+                        <button type="button" class="btn onboarding-connection-search">
+                            <span class="fa fa-search onboarding-connection-search-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row" ng-show="ctrl.companySelectionStatus.CompanySelectionType == '1'" style="padding-top:10px;padding-bottom:10px;">
+            <div class="col-sm-4 col-sm-offset-4 text-center">
+                <button type="submit" ng-click="ctrl.nextStep()" class="onboarding-start" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Next</button>
+            </div>
+        </div>
+
+        <form name="myForm" novalidate>
+            <div class="row" ng-show="ctrl.companySelectionStatus.CompanySelectionType == '2'">
+                <div class="col-sm-6 col-sm-offset-4">
+                    <div class="row">
+
+                        <label class="col-sm-3 account-company-details mandatory">Company name</label>
+
+                        <div class="col-sm-6 account-company-details">
+                            <input type="text" name="company" id="company" ng-keypress="ctrl.addCompanyKeyPressEvent($event, myForm.company)" class="form-control account-company-details" autocomplete="off" ng-model="ctrl.company.DisplayName" placeholder="" onkeypress="handle(event)" required>
+
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details-company-logo">Company logo</label>
+                        <div class="col-sm-6 account-company-details" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowFilesSubmitted($files, $event, $flow)">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a flow-btn href="javascript:void(0)">
+                                        <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getCompanyProfileImage()}}" alt="{{ctrl.company.DisplayName}}">
+                                    </a>
+                                </div>
+                                <div class="media-body" ng-show="hasCompanyLogo">
+                                    <h4 flow-btn style="cursor: pointer;" class="media-heading account-company-details-media-heading">Update&nbsp;&nbsp;<i class="fa fa-pencil"></i></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">Trading name</label>
+
+                        <div class="col-sm-6 account-company-details">
+                            <input type="text" name="trading" id="trading" class="form-control account-company-details" autocomplete="off" ng-model="ctrl.company.TradingName" placeholder="" onkeypress="handle(event)" required ng-keypress="ctrl.addCompanyKeyPressEvent($event, myForm.trading)">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">
+                            In a few words tell us about your company
+                        </label>
+                        <div class="col-sm-6 account-company-details ">
+                            <textarea type="text" name="description" id="description" class="form-control account-company-details" ng-model="ctrl.company.Description" placeholder="" required ng-keypress="ctrl.addCompanyKeyPressEvent($event, myForm.description)" maxlength="200"></textarea>
+                            <div class="countbox pull-right" ng-if="ctrl.company.Description.length>0">
+                                Characters:&nbsp;{{200-ctrl.company.Description.length}}
+                            </div>
+                        </div>
+
+                        <div class="countbox" ng-if="ctrl.company.Description.length>0">
+                            <!--Count:- {{ctrl.company.Description.length}}-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">Email</label>
+                        <div class="col-sm-6 account-company-details mandatory">
+                            <input type="email" name="Email" id="Email" ng-keypress="ctrl.addCompanyKeyPressEvent($event, myForm.Email)" class="form-control account-company-details"  ng-blur="errorEmailInvalid=myForm.Email.$error.email" autocomplete="off" ng-model="ctrl.company.Email" placeholder="Email" onkeypress="handle(event)" required maxlength="200">
+                            <span class="error" style="color:red" ng-show="errorEmailInvalid">
+                                Not valid email!
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">Phone</label>
+                        <div class="col-sm-6 account-company-details mandatory">
+                            <input type="text" name="Phone" id="Phone" class="form-control account-company-details" autocomplete="off" ng-model="ctrl.company.PhoneNumber" placeholder="Phone" ng-keypress="filterValue($event);ctrl.addCompanyKeyPressEvent($event, myForm.Phone)" onkeypress="handle(event)" required maxlength="14">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">Website</label>
+
+                        <div class="col-sm-6 account-company-details mandatory">
+                            <input type="text" name="Website" class="form-control account-company-details"  ng-blur="urlError=myForm.Website.$error.pattern" autocomplete="off" ng-model="ctrl.company.WebsiteUrl" placeholder="" ng-pattern="urlPattern" onkeypress="handle(event)" >
+                        </div>
+                        <span class="error" style="color:red" ng-show="urlError">
+                            Enter a valid URL
+                        </span>
+
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">Sector</label>
+                        <div class="col-sm-6 account-company-details">
+                            <div class="dropdown">
+                                <input type="text" id="SelectSector" name="SelectSector" class="form-control account-company-details" placeholder="eg. Consulting, Insurance etc..." ng-model="ngSectorOptionSelected" ng-model-options="modelOptions" typeahead-min-length="1" typeahead-editable="true" typeahead-select-on-exact="true" uib-typeahead="sector.SectorName for sector in ctrl.companySectors | filter:$viewValue" onkeypress="handle(event)" required>
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-5 account-company-details">
+                            <button ng-hide="AddSectorEnabled" onkeypress="handle(event)" class="onboarding-start marb-btm" ng-click="AddSectorEnable()">Add Sector</button>
+                        </div>-->
+                    </div>
+
+                    
+
+                    <div class="row">
+                        
+                        <div class="col-sm-12">
+                            <tag-manager tags="tags" ng-if="dataHasLoaded"> </tag-manager>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-4 text-center">
+                            <button ng-click="ctrl.nextStep()" class="onboarding-start marb-15" ng-disabled="ctrl.busy" onkeypress="handle(event)">
+                                <span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Next
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </form>
+
+
+        <form name="PersonalProfile" novalidate>
+
+            <div class="row" ng-show="ctrl.companySelectionStatus.CompanySelectionType == '3'" style="padding-top:10px;padding-bottom:10px;">
+                <div class="col-sm-6 col-sm-offset-4">
+                    <div class="row">
+                        <label class="col-sm-3 account-personal-details-company-logo">Profile photo</label>
+                        <div class="col-sm-6 account-company-details" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowFilesSubmittedUser($files, $event, $flow)">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a flow-btn href="javascript:void(0)">
+                                        <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getUserProfileImage()}}" alt="{{user.UserName}}">
+                                    </a>
+                                </div>
+                                <div class="media-body" ng-show="hasProfileLogo">
+                                    <h4 flow-btn style="cursor: pointer;" class="media-heading account-company-details-media-heading">Update&nbsp;&nbsp;<i class="fa fa-pencil"></i></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">First name</label>
+                        <div class="col-sm-6 account-company-details">
+                            <input name="FirstName" id="pfFirstName"  ng-keypress="ctrl.addPersonalProfileStepOneKeyPressEvent($event, PersonalProfile.FirstName)" type="text" class="form-control account-company-details" ng-model="user.FirstName" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">Surname</label>
+                        <div class="col-sm-6 account-personal-details">
+                            <input name="Surname" id="pfSurename" ng-keypress="ctrl.addPersonalProfileStepOneKeyPressEvent($event, PersonalProfile.Surname)" type="text" class="form-control account-company-details" ng-model="user.LastName" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">Mobile</label>
+                        <div class="col-sm-6 account-company-details">
+                            <input name="PhoneNumber" id="pfPhoneNumber" type="text" ng-keypress="filterValue($event);ctrl.addPersonalProfileStepOneKeyPressEvent($event, PersonalProfile.PhoneNumber)" autocomplete="off" class="form-control account-company-details" ng-model="user.PhoneNumber" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">Country</label>
+                        <div class="col-sm-6 account-company-details">
+                            <div class="dropdown" >
+                                <button class="btn btn-default dropdown-toggle account-company-details-sector-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {{user.Country}}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" name="Country">
+                                    <li ng-repeat="country in ctrl.countries"><a href="javascript:void(0)" ng-click="setUserCountry(country.name)">{{country.name}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details mandatory">City/Town</label>
+                        <div class="col-sm-6 account-company-details">
+                            <input name="Town" id="pfTown" ng-keypress="ctrl.addPersonalProfileStepOneKeyPressEvent($event, PersonalProfile.Town)" type="text" class="form-control account-company-details" ng-model="user.Town" placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-4 text-center">
+                        <button ng-click="ctrl.nextStep()" class="onboarding-start" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Next</button>
+                    </div>
+                </div>
+                <!--</form>-->
+            </div>
+        </form>
+</main>
+
+<script>
+    function handle(e) {
+        debugger
+        if (e.keyCode === 13) {
+            debugger
+            e.preventDefault(); // Ensure it is only this code that rusn
+            return false;
+                    }
+    }
+    
+</script>
+<!--<script type="text/ng-template" id="onboardingSearchResultsTypeaheadTemplate2.html">
+
+    <div class="container-fluid onboarding-search-results-container" ng-style="{top: position().top + 'px', left: position().left + 'px'}" ng-show="isOpen() && !moveInProgress">
+        <div ng-show="(matches).length" class="row nav-search-results-header-row">
+            <div class="col-sm-12">
+                <span class="nav-search-results-companies">Companies</span>
+                &nbsp;
+                <span style="display:none;" ui-sref="search({query: query, show: 'companies'})" class="nav-search-results-products-view-all">view all</span>
+            </div>
+        </div>
+        <div ng-repeat="match in matches track by $index" class="row uib-typeahead-match nav-search-results-row" >
+            <div class="col-sm-3">
+                <img class="img-circle nav-search-results-logo" ng-src="api/GetCompanyLogo?companyId={{match.model.ID}}" />
+            </div>
+            <div class="col-sm-9" ng-controller="onboardingStepOneController">
+                <span class="nav-search-results-company-name">{{match.model.DisplayName}}</span>
+                <br />
+                <span class="nav-search-results-company-products">{{match.model.ProductCount}} products</span>
+            </div>
+            <button ng-click='SendId(match.model.DisplayName)'>{{match.model.DisplayName}}></button>
+        </div>
+    </div>
+</script>-->
+<script type="text/ng-template" id="onboardingSearchResultsTypeaheadTemplate2.html">
+    <div class="container-fluid onboarding-search-results-container">
+        <div class="main_search">
+
+            <input name="editable-select"
+                   type="text"
+                   class="form-control dropdown-toggle editable-select"
+                   ng-disabled="isDisabled"
+                   ng-model="CompanyModel.Name" ng-change="search(CompanyModel.Name)">
+
+            <div ng-repeat="option in CompanyData" class="uib-typeahead-match nav-search-results-row" ng-show="CompanyShow">
+                <div class="col-sm-3">
+                    <img class="img-circle nav-search-results-logo" ng-src="api/GetCompanyLogo?companyId={{option.ID}}" />
+                </div>
+                <div class="col-sm-9" ng-controller="onboardingStepOneController" ng-click='onSelect(option)'>
+                    <div class="main_search_content">
+                        <span class="nav-search-results-company-name">{{option.DisplayName}}</span>
+
+                        <span class="nav-search-results-company-products">{{option.ProductCount}} products</span>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</script>
+

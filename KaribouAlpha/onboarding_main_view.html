@@ -1,0 +1,82 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <br>
+                <span ng-click="ctrl.skipOnboarding()" class="onboarding-skip">Skip and jump straight in »</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h3 class="onboarding-title">Great!</h3>
+                <h4 class="onboarding-title">Your account is verified now it's time to get going</h4>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 onboarding-col">
+                <div class="row row-eq-height start_step_center">
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="onboarding-item-container">
+                                    <div class="dashboard-updates-counter-container">
+                                        <span class="fa fa-folder-open-o onboarding-icon"></span>
+                                    </div>
+                                    <h4 class="onboarding-item-heading">Add company</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow" src="img/onboarding_arrow.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="onboarding-item-container">
+                                    <div class="dashboard-updates-counter-container">
+                                        <span class="fa fa-star-o onboarding-icon"></span>
+                                    </div>
+                                    <h4 class="onboarding-item-heading">Add Products</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow" src="img/onboarding_arrow.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="onboarding-item-container">
+                                    <div class="dashboard-updates-counter-container">
+                                        <span class="fa fa-id-card-o onboarding-icon"></span>
+                                    </div>
+                                    <h4 class="onboarding-item-heading">Personal Details</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow" src="img/onboarding_arrow.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 onboarding-item-col">
+                        <div class="onboarding-item-container">
+                            <div class="dashboard-updates-counter-container">
+                                <span class="fa fa-users onboarding-icon"></span>
+                            </div>
+                            <h4 class="onboarding-item-heading">Find connections</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4 text-center">
+                <button ng-click="ctrl.startOnboarding()" class="onboarding-start" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Start</button>
+            </div>
+        </div>
+    </div>
+</main>

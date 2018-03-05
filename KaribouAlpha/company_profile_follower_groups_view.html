@@ -1,0 +1,110 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row account-company-tabs-row">
+            <div class="col-sm-12 account-company-tabs-col">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileDetails">Details</a></li>
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileTeam">Team</a></li>
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="companyProfileFollowerGroups">Follower groups</a></li>
+                    <!--<li role="presentation"><a class="company-profile-tab"ui-sref="companyProfileNotifications">Email notifications</a></li>-->
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileSocialMedia">Social media</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row account-company-details-main-row">
+            <div class="col-sm-3 account-company-links-left">
+                <ul class="account-company-links-left">
+                    <li class="account-company-link-left"><a class="account-company-link-left active" ui-sref="companyProfileDetails">Company profile</a></li>
+                    <li class="account-company-link-left"><a class="account-company-link-left" ui-sref="personalProfileDetails">Personal profile</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 account-company-members-main-col">
+                <div ng-show="ctrl.hasConfirmation" class="row">
+                    <div class="col-sm-10 account-company-members-confirmation-col">
+                        <div class="confirmation">
+                            <i class="fa fa-check-circle"></i>&nbsp;{{ctrl.confirmationMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.hasError" class="row">
+                    <div class="col-sm-10 account-company-members-error-col">
+                        <div class="error">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ctrl.errorMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 account-company-member-count-col">
+                        <p class="account-company-member-count">You have <span style="font-weight: 400">{{ctrl.followerGroups.length}} follower groups</span>.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 account-company-member-count-col">
+                        <p class="account-company-member-count">Add new follower group</p>
+                    </div>
+                    <div class="col-sm-7 account-company-member-count-col">
+                        <div ng-click="ctrl.showNewFollowerGroupPopup()" class="company-product-logo-add-container" uib-popover-template="'newCompanyFollowerGroupDetailsPopover.html'" popover-is-open="ctrl.newFollowerGroupPopup" popover-trigger="'none'" popover-placement="right" popover-append-to-body="true">
+                            <div class="company-product-logo-add-icon">
+                                <i class="fa fa-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.followerGroups.length > 0" class="row">
+                    <div class="col-sm-1 col-sm-offset-10 account-company-members-action-label">
+                        Edit
+                    </div>
+                    <div class="col-sm-1 account-company-members-action-label">
+                        Delete
+                    </div>
+                </div>
+                <div ng-repeat="group in ctrl.followerGroups track by group.ID" class="row account-company-member-row">
+                    <div class="col-sm-10 account-company-member-col" uib-popover-template="'companyFollowerGroupDetailsPopover.html'" popover-is-open="group.Editing" popover-trigger="'none'" popover-placement="right" popover-append-to-body="true">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading account-company-member-media-heading">{{group.Name}}</h4>
+                                <p class="account-company-member-media-body">{{group.FollowersCount}} followers</p>
+                                <p class="account-company-member-media-body">{{group.VisibleProductsCount}} products</p>
+                                <p class="account-company-member-media-body">{{group.VisibleProductFilesCount}} product files</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 account-company-member-edit-action">
+                        <a href="javascript:void(0)" ng-click="ctrl.editFollowerGroup(group)"><i class="fa fa-pencil account-company-member-edit-icon"></i></a> <span class="account-company-member-title">{{companyMember.Role}}</span>
+                    </div>
+                    <div class="col-sm-1 account-company-member-delete-action">
+                        <a href="javascript:void(0)" ng-click="ctrl.deleteFollowerGroup(group)"><i class="fa fa-trash account-company-member-delete-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="companyFollowerGroupDetailsPopover.html">
+    <div class="container-fluid account-company-member-details-popover">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="group.Name" class="account-company-member-sector" placeholder="Sector (i.e. sales, customer service)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.updateFollowerGroup(group)" class="btn btn-default account-company-member-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Save</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="newCompanyFollowerGroupDetailsPopover.html">
+    <div class="container-fluid account-company-member-details-popover">
+        <div class="row">
+            <div class="col-sm-12">
+                <input type="text" ng-model="ctrl.newCompanyFollowerGroupName" class="account-company-member-sector" placeholder="Group name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" ng-click="ctrl.addNewFollowerGroup()" class="btn btn-default account-company-member-details-save pull-right" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Add</button>
+            </div>
+        </div>
+    </div>
+</script>

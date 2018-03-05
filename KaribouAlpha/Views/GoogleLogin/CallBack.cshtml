@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Validating Google Login...</title>
+    <script type="text/javascript">
+        function CallBackLoad() {
+            var haslocalaccount = '@ViewBag.haslocalaccount';
+            var hascervituser = '@ViewBag.hascervituser';
+                var provider = '@ViewBag.provider';
+                var external_user_name = '@ViewBag.external_user_name';
+                var external_access_token ='@ViewBag.external_access_token';
+                var obj = new Object();
+                obj.haslocalaccount = haslocalaccount;
+                obj.hascervituser = hascervituser;
+                obj.email = '@ViewBag.email';
+                obj.provider = provider;
+                obj.external_user_name = external_user_name;
+                obj.external_access_token = external_access_token;
+                window.opener.$windowScope.facebookAuthenticationCompletedCallback(obj);
+                window.close();
+        }
+    </script>
+</head>
+<body onload="CallBackLoad()">
+    @if (ViewBag.EmailError)
+    {
+        <div style="color:#ff0000;">
+            Error during google authentication processs or please try again with correct login details.
+        </div>
+    }
+</body>
+</html>

@@ -1,0 +1,140 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="dropdown pull-right user-selection">
+                    <button class="btn btn-default dropdown-toggle user-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Viewing as: <span class="current-user">{{ctrl.selectedFollowerGroup ? ctrl.selectedFollowerGroup.Name : 'Me'}}</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="javascript:void(0)" ng-click="ctrl.selectFollowerGroup(null)">Me</a></li>
+                        <li ng-show="ctrl.followerGroups.length > 0" role="separator" class="divider"></li>
+                        <li ng-repeat="group in ctrl.followerGroups track by group.ID"><a href="javascript:void(0)" ng-click="ctrl.selectFollowerGroup(group)">{{group.Name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row company-profile-tabs">
+            <div class="col-sm-12 company-profile-tabs">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="productDetails({productId: ctrl.productId})">Details</a></li>
+                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="productTeam({productId: ctrl.productId})">Team</a></li>-->
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="productFiles({productId: ctrl.productId})">Product Materials</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row company-details-main-row">
+            <div class="col-sm-3 company-product-links-left">
+                <ul ng-show="ctrl.products.length > 0" class="company-product-links-left">
+                    <li ng-repeat="product in ctrl.products track by product.ID" class="company-product-link-left"><a class="company-product-link-left" ng-class="{'active' : ctrl.productId == product.ID}" ui-sref="productDetails({productId: product.ID})">{{product.Name}}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div class="row company-profile-files-table-header-row">
+                    <div class="col-sm-1 company-profile-files-table-header-label">
+                        Preview
+                    </div>
+                    <div class="col-sm-4 company-profile-files-table-header-label">
+                        Title
+                    </div>
+                    <div class="col-sm-1 company-profile-files-table-header-label">
+                        Uploaded
+                    </div>
+                    <div class="col-sm-2 company-profile-files-table-header-label">
+                        Privacy
+                    </div>
+                    <div class="col-sm-2 company-profile-files-table-header-label">
+                        File type
+                    </div>
+                </div>
+                <div ng-repeat="productFilesByCategory in ctrl.productFilesByCategory track by productFilesByCategory.category.code" ng-if="productFilesByCategory.productFiles.length > 0" class="row">
+                    <div class="col-sm-12">
+                        <div class="row company-profile-file-header-row">
+                            <div class="col-sm-7 company-profile-file-header-col">
+                                {{productFilesByCategory.category.name}}
+                            </div>
+                        </div>
+                        <div ng-repeat="productFile in productFilesByCategory.productFiles track by productFile.ID" class="row company-profile-file-row">
+                            <div class="col-sm-1 company-profile-file-preview-col">
+                                <img ng-src="api/GetProductFileImage?pixelWidth=55&pixelHeight=55&productFileId={{productFile.ID}}" class="company-profile-file-image" alt="{{productFile.Name}}">
+                            </div>
+                            <div class="col-sm-4 company-profile-file-title-col">
+                                <h4 class="company-profile-file-title">{{productFile.Name}}</h4>
+                                <p class="company-profile-file-description">{{productFile.Description}}</p>
+                            </div>
+                            <div class="col-sm-1 company-profile-file-uploaded-col">
+                                <p class="company-profile-file-uploaded">{{productFile.UploadedAt | date : "dd.MM.y"}}</p>
+                            </div>
+                            <!--ng-click="ctrl.setProductFilePrivacy(productFile, productFilePrivacy)"-->
+                            <div class="col-sm-2 company-profile-file-privacy-col">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle file-privacy-selection" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                Privacy: 
+                                                
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                                <li style="border-bottom:2px solid #808080;"><input type="checkbox" ng-checked="productFile.Privacy==0" ng-click="ctrl.setProductFilePrivacy(productFile,PublicModel)"/>Public</li>
+                                                <li ng-repeat="productFilePrivacy in ctrl.followerGroups"><input type="checkbox" ng-checked="ctrl.getProductFileGroupVisibilityDisplay(productFile).indexOf(productFilePrivacy.Name)> -1"  ng-click="ctrl.setProductFilePrivacy(productFile, productFilePrivacy)"/>{{productFilePrivacy.Name}}</li>
+                                                <li><input type="text" placeholder="Search"></li>
+                                                <!--<li ng-repeat="productFilePrivacy in ctrl.productFilePrivacyEnum"><a href="javascript:void(0)" ng-click="ctrl.setProductFilePrivacy(productFile, productFilePrivacy)">{{productFilePrivacy.name}}</a></li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div ng-show="productFile.Privacy === 3" class="row">
+                                    <div class="col-sm-10">
+                                        Groups: {{ctrl.getProductFileGroupVisibilityDisplay(productFile)}}
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="fa fa-pencil connections-connection-member-edit-icon" ng-click="ctrl.editProductFileGroupVisibility(productFile)"></span>
+                                    </div>
+                                </div>-->
+                                <!--<div class="col-sm-10">
+                                    <b>Groups:</b> {{ctrl.getProductFileGroupVisibilityDisplay(productFile)}}
+                                </div>-->
+                            </div>
+                            <div class="col-sm-2 company-profile-file-type-col">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle file-type-selection" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{ctrl.getProductFileCategoryName(productFile)}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="category in ctrl.productFileCategories"><a href="javascript:void(0)" ng-click="ctrl.setProductFileCategory(productFile, category)">{{category.name}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 company-profile-file-actions-col">
+                                <i ng-click="ctrl.toggleProductFileVisibility(productFile)" style="cursor: pointer;" class="fa fa-eye company-profile-file-action-icon"></i>
+                                <i style="cursor: pointer;" class="fa fa-bar-chart company-profile-file-action-icon"></i>
+                                <i ng-click="ctrl.editProductFile(productFile)" style="cursor: pointer;" class="fa fa-pencil company-profile-file-action-icon"></i>
+                                <i ng-click="ctrl.deleteProductFile(productFile)" style="cursor: pointer;" class="fa fa-trash-o company-profile-file-action-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script type="text/ng-template" id="editProductFileGroupsVisbleToModal.html">
+    <div class="modal-header">
+        <h3 class="modal-title follower-groups-modal-title" id="modal-title">Group visibility for {{productFile.Name}}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div ng-repeat="followerGroup in ctrl.followerGroups track by followerGroup.ID" class="row">
+            <div class="col-sm-8 follower-groups-modal-follower-group">{{followerGroup.Name}}</div>
+            <div class="col-sm-4">
+                <input type="checkbox" ng-model="followerGroup.Selected" />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="follower-groups-modal" type="button" ng-click="ctrl.ok()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>OK</button>
+        <button class="follower-groups-modal" type="button" ng-click="ctrl.cancel()" ng-disabled="ctrl.busy"><span ng-show="ctrl.busy"class="glyphicon glyphicon-refresh spinning"></span>Cancel</button>
+    </div>
+</script>

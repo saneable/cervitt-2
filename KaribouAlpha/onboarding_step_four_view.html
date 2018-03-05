@@ -1,0 +1,205 @@
+﻿<style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 10%;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+</style>
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <br>
+                <span ng-click="ctrl.skipOnboarding()" class="onboarding-skip">Skip and jump straight in »</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 onboarding-col start_step_center_small">
+                <div class="row row-eq-height">
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div ng-click="ctrl.jumpToStep('Company')" class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span ng-click="ctrl.jumpToStep('Company')" class="fa fa-star-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12">
+                                <h4 ng-click="ctrl.jumpToStep('Company')" class="onboarding-item-heading">Company</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div ng-hide="IsIndividual" ng-click="ctrl.jumpToStep('Product')"  class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span ng-click="ctrl.jumpToStep('Product')" class="fa fa-folder-open-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+                                <div ng-show="IsIndividual" class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-folder-open-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12">
+                                <h4 ng-hide="IsIndividual" ng-click="ctrl.jumpToStep('Product')" class="onboarding-item-heading">Products</h4>
+                                <h4 ng-show="IsIndividual" class="onboarding-item-heading">Products</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div ng-hide="IsIndividual" ng-click="ctrl.jumpToStep('Personal')" class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span ng-click="ctrl.jumpToStep('Personal')" class="fa fa-id-card-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+                                <div ng-show="IsIndividual" class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-id-card-o onboarding-icon-sm"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <img class="onboarding-arrow-sm" src="img/onboarding_arrow.png">
+                            </div>
+                            <div class="col-sm-12">
+                                <h4 ng-hide="IsIndividual" ng-click="ctrl.jumpToStep('Personal')"  class="onboarding-item-heading">Personal Details</h4>
+                                <h4 ng-show="IsIndividual" class="onboarding-item-heading">Personal Details</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 onboarding-item-col">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="onboarding-item-container">
+                                    <div class="onboarding-icon-container-sm">
+                                        <span class="fa fa-users onboarding-icon-sm"></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-sm-12"><h4 class="onboarding-item-heading">Connections</h4></div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        <!--<table >
+             
+
+                <tr cellpadding="10">
+                    <td ng-repeat="user in Users" style="padding:10px; border:solid; border-color:black" >
+                        {{user.FirstName}} <br>
+                        {{user.LastName}}<br>
+                        Something
+                        Invite
+                    </td>
+                </tr>
+                
+            </table>-->
+
+         
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-10 col-sm-offset-1 onboarding-col"><span class="font18 padr15">{{Users.length}} Contacts </span><button class="btn btn-default account-personal-details-save marzero">Connect/Invite all</button> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">    
+                <div class="col-sm-10 col-sm-offset-1 onboarding-col">
+                    <div class="col-lg-2" ng-repeat="user in Users" >
+                        <div class="step-card">
+                            <div class="media-left">
+                                <!--<a flow-btn href="javascript:void(0)">-->
+                                    <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getUserProfileImage()}}" alt="{{user.UserName}}">
+                                <!--</a>-->
+                            </div> 
+                            <p>{{user.FirstName}} {{user.LastName}}</p>
+                            <small>Something</small>
+                            <p class="text-center"><a href="" ng-click="InviteUser(user.ID)">Invite</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+
+
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <!-- <div class="input-group onboarding-connection-search"> -->
+                    <!-- <input type="text" class="form-control onboarding-connection-search" ng-model="ctrl.searchQuery" uib-typeahead="result for result in ctrl.search($viewValue)" typeahead-min-length="3" typeahead-popup-template-url="onboardingSearchResultsTypeaheadTemplate.html" placeholder="Search on Cervitt" /> -->
+                    <!-- <button type="button" class="btn onboarding-connection-search"> -->
+                        <!-- <span class="fa fa-search onboarding-connection-search-icon"></span> -->
+                    <!-- </button> -->
+
+                <!-- </div> -->
+                <!-- <br><br> -->
+
+                <button ng-click="ctrl.backStep()" class="onboarding-start spc50 back-btn" ng-disabled="ctrl.busyPrev"><span ng-show="ctrl.busyPrev" class="glyphicon glyphicon-refresh spinning"></span>Back</button>
+
+                <button class="onboarding-start spc50"  type="button" value="Complete Details" ng-click="ctrl.skipOnboarding()">Complete</button>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+<script type="text/ng-template" id="onboardingSearchResultsTypeaheadTemplate.html">
+    <div class="container-fluid onboarding-search-results-container" ng-style="{top: position().top + 'px', left: position().left + 'px'}" ng-show="isOpen() && !moveInProgress">
+        <div ng-show="(matches|filter:{model:{Type:1}}).length" class="row nav-search-results-header-row">
+            <div class="col-sm-12">
+                <span class="nav-search-results-products">Products</span>
+                &nbsp;
+                <span ui-sref="search({query: query, show: 'products'})" class="nav-search-results-products-view-all">view all</span>
+            </div>
+        </div>
+        <div ui-sref="product({productId: match.model.ProductID, companyId: match.model.CompanyID})" ng-repeat="match in matches | filter:{model:{Type:1}} track by $index" class="row uib-typeahead-match nav-search-results-row">
+            <div class="col-sm-3">
+                <img class="img-circle nav-search-results-logo" ng-src="api/GetProductLogo?productId={{match.model.ProductID}}" />
+            </div>
+            <div class="col-sm-9">
+                <span class="nav-search-results-product-name">{{match.model.Name}}</span>
+                <br />
+                <span class="nav-search-results-product-connections">{{match.model.ConnectionCount}} connections</span>
+            </div>
+        </div>
+        <div ng-show="(matches|filter:{model:{Type:0}}).length" class="row nav-search-results-header-row">
+            <div class="col-sm-12">
+                <span class="nav-search-results-companies">Companies</span>
+                &nbsp;
+                <span ui-sref="search({query: query, show: 'companies'})" class="nav-search-results-products-view-all">view all</span>
+            </div>
+        </div>
+        <div ui-sref="company({companyId: match.model.CompanyID})" ng-repeat="match in matches | filter:{model:{Type:0}} track by $index" class="row uib-typeahead-match nav-search-results-row">
+            <div class="col-sm-3">
+                <img class="img-circle nav-search-results-logo" ng-src="api/GetCompanyLogo?companyId={{match.model.CompanyID}}" />
+            </div>
+            <div class="col-sm-9">
+                <span class="nav-search-results-company-name">{{match.model.Name}}</span>
+                <br />
+                <span class="nav-search-results-company-products">{{match.model.ProductCount}} products</span>
+            </div>
+        </div>
+    </div>
+</script>

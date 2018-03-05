@@ -1,0 +1,85 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" style="height: 80px;">
+            </div>
+        </div>
+        <div class="row company-profile-tabs">
+            <div class="col-sm-12 company-profile-tabs">
+                <ul class="nav nav-tabs">
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="productDetails({productId: ctrl.productId})">Details</a></li>
+                    <!--<li role="presentation" class="active"><a class="company-profile-tab" ui-sref="productTeam({productId: ctrl.productId})">Team</a></li>-->
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="productFiles({productId: ctrl.productId})">Files</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row company-details-main-row">
+            <div class="col-sm-3 company-product-links-left">
+                <ul ng-show="ctrl.products.length > 0" class="company-product-links-left">
+                    <li ng-repeat="product in ctrl.products track by product.ID" class="company-product-link-left"><a class="company-product-link-left" ng-class="{'active' : ctrl.productId == product.ID}" ui-sref="productDetails({productId: product.ID})">{{product.Name}}</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <div ng-show="ctrl.hasConfirmation" class="row">
+                    <div class="col-sm-10 company-profile-members-confirmation-col">
+                        <div class="confirmation">
+                            <i class="fa fa-check-circle"></i>&nbsp;{{ctrl.confirmationMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.hasError" class="row">
+                    <div class="col-sm-10 company-profile-members-error-col">
+                        <div class="error">
+                            <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ctrl.errorMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="dropdown company-product-privacy-dropdown">
+                            <button class="btn btn-default dropdown-toggle privacy-selection" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span>Add team member</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li ng-show="ctrl.availableCompanyMembers.length === 0"><a href="javascript:void(0)">No available team members to add</a></li>
+                                <li ng-repeat="companyMember in ctrl.availableCompanyMembers"><a href="javascript:void(0)" ng-click="ctrl.addNewProductTeamMember(companyMember)">{{ctrl.getCompanyMemberUserDisplayName(companyMember)}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="ctrl.productTeamMembers.length > 0" class="row">
+                    <div class="col-sm-1 pull-right company-profile-members-action-label">
+                        Remove
+                    </div>
+                    <div class="col-sm-1 pull-right company-profile-members-action-label">
+                        Can edit
+                    </div>
+                </div>
+                <div ng-repeat="productTeamMember in ctrl.productTeamMembers" class="row company-profile-member-row">
+                    <div class="col-sm-7 company-profile-member-col">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object img-circle company-profile-member-profile-image" ng-src="api/GetUserProfileImage?userName={{productTeamMember.UserUserName}}" alt="{{ctrl.getProductTeamMemberUserDisplayName(productTeamMember)}}">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading company-profile-member-media-heading">{{ctrl.getProductTeamMemberUserDisplayName(productTeamMember)}}</h4>
+                                <p class="company-profile-member-media-body">{{productTeamMember.Role}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 pull-right company-profile-member-action">
+                        <a ng-click="ctrl.removeProductTeamMember(productTeamMember)" href="javascript:void(0)"><i class="fa fa-trash company-profile-member-delete-icon"></i></a>
+                    </div>
+                    <div class="col-sm-1 pull-right company-profile-member-action">
+                        <input ng-if="productTeamMember.CanEditTheProduct" ng-click="ctrl.setProductTeamMemberCanEditTheProduct(productTeamMember, false)" type="checkbox" class="company-profile-member-canedit-checkbox" autocomplete="off" checked>
+                        <input ng-if="!productTeamMember.CanEditTheProduct" ng-click="ctrl.setProductTeamMemberCanEditTheProduct(productTeamMember, true)" type="checkbox" class="company-profile-member-canedit-checkbox" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>

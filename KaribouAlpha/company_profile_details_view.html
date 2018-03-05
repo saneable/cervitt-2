@@ -1,0 +1,210 @@
+﻿<main>
+    <div class="container-fluid">
+        <div class="row account-company-tabs-row">
+            <div class="account-company-tabs-col">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"><a class="company-profile-tab" ui-sref="companyProfileDetails">Details</a></li>
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileTeam">Team</a></li>
+                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileFollowerGroups">Follower groups</a></li>-->
+                    <!--<li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileNotifications">Email notifications</a></li>-->
+                    <li role="presentation"><a class="company-profile-tab" ui-sref="companyProfileSocialMedia">Social media</a></li>
+                </ul>
+            </div>
+        </div>
+        <form name="myForm" novalidate>
+            <div class="row account-company-details-main-row">
+                <div class="col-sm-3 account-company-links-left">
+                    <ul class="account-company-links-left">
+                        <li class="account-company-link-left"><a class="account-company-link-left active" ui-sref="companyProfileDetails">Company profile</a></li>
+                        <li class="account-company-link-left"><a class="account-company-link-left" ui-sref="personalProfileDetails">Personal profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-8 account-company-details-main-col">
+                    <div ng-show="ctrl.hasConfirmation" class="row">
+                        <div class="col-sm-10 confirmation-col">
+                            <div class="confirmation">
+                                <i class="fa fa-check-circle"></i>&nbsp;{{ctrl.confirmationMessage}}
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="ctrl.hasError" class="row">
+                        <div class="col-sm-10 error-col">
+                            <div class="error">
+                                <i class="fa fa-exclamation-triangle"></i>&nbsp;{{ctrl.errorMessage}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row account-company-details-name-row">
+                        <div class="col-sm-8 account-company-details-display-name">
+                            <input type="text" class="form-control account-company-details-display-name" ng-model="ctrl.company.DisplayName"  name="DisplayName"  id="DisplayName" ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.DisplayName)"  ng-change="ctrl.updateCompanyUri()" placeholder="Display name" required>
+                        </div>
+                    </div>
+                    <div class="row account-company-details-url-row">
+                        <label class="col-sm-3 account-company-details-url">Profile URL</label>
+                        <div class="col-sm-5 account-company-details-url">
+                            <input type="text" name="companyUri" id="companyUri" class="form-control account-company-details-url" ng-model="ctrl.company.URI" ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.companyUri)" placeholder="Profile Url" required>
+                            <label for="companyUri" class="company-product-input-label">https://cervitt.co.uk/c/{{ctrl.company.URI}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details-company-logo">Company logo</label>
+                        <div class="col-sm-5 account-company-details" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.flowFilesSubmitted($files, $event, $flow)">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a flow-btn href="javascript:void(0)">
+                                        <img class="media-object img-circle personal-profile-image" ng-src="{{ctrl.getCompanyProfileImage()}}" alt="{{ctrl.company.DisplayName}}">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 flow-btn style="cursor: pointer;" class="media-heading account-company-details-media-heading">Update&nbsp;&nbsp;<i class="fa fa-pencil"></i></h4>
+                                    <span ng-show="LogoNotUploaded" style="color:red">Please select company logo</span>
+
+                                    <span ng-show="InValidProfileImage" style="color:red">
+                                        Please select valid Company Logo
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details-company-logo">Header Image</label>
+                        <div class="col-sm-5 account-company-details" flow-init="ctrl.flowOptions" flow-files-submitted="ctrl.HeaderImageFile($files, $event, $flow)">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a flow-btn href="javascript:void(0)">
+                                        <img class="media-object img-circle personal-profile-image" ng-src="{{getCompanyHeaderImage()}}" alt="{{ctrl.company.DisplayName}}">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 ng-hide="NoHeaderImage" flow-btn style="cursor: pointer;" class="media-heading account-company-details-media-heading">Update&nbsp;&nbsp;<i class="fa fa-pencil"></i></h4>
+                                    <span ng-show="InvalidHeader" style="color:red">
+                                        Please select valid header image
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">Trading name</label>
+                        <div class="col-sm-5 account-company-details">
+                            <input type="text" name="TradingName" id="TradingName" class="form-control account-company-details" ng-model="ctrl.company.TradingName" placeholder="Trading name" required ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.TradingName)" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">In a few words tell us about your company</label>
+                        <div class="col-sm-5 account-company-details">
+                            <textarea id="details" name="details" type="text" class="form-control account-company-details" ng-model="ctrl.company.Description" placeholder="" maxlength="200" required ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.details)" ></textarea>
+                            <div class="countbox pull-right" ng-if="ctrl.company.Description.length>0">
+                                Characters:&nbsp;{{200-ctrl.company.Description.length}}
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">Email</label>
+                        <div class="col-sm-5 account-company-details">
+                            <input type="email" name="Email" id="Email" class="form-control account-company-details" ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.Email)"  ng-blur="errorEmailInvalid=myForm.Email.$error.email" ng-model="ctrl.company.Email" placeholder="Email" required>
+                            <span class="error" style="color:red" ng-show="errorEmailInvalid">
+                                Not valid email!
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">Phone</label>
+                        <div class="col-sm-5 account-company-details">
+                            <input type="text" name="phone" id="phone" class="form-control account-company-details" ng-model="ctrl.company.PhoneNumber" placeholder="Phone" required ng-keypress="ctrl.companyProfileKeyPressEvent($event, myForm.phone)">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">Website</label>
+                        <div class="col-sm-5 account-company-details">
+                            <input type="text" class="form-control account-company-details" ng-pattern="urlPattern"  name="Website" ng-blur="urlError=myForm.Website.$error.pattern" ng-model="ctrl.company.WebsiteUrl" placeholder="" autocomplete="off">
+                        </div>
+                        <span class="error" style="color:red" ng-show="urlError">
+                            Enter a valid URL
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">Sector</label>
+                        <div class="col-sm-5 account-company-details">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle account-company-details-sector-selection" type="button" id="ddlSector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {{!ctrl.company.Sector ? 'Please choose' : ctrl.company.Sector}}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu srcollable-dropdown-menu">
+                                    <li ng-repeat="sector in ctrl.companySectors"><a href="javascript:void(0)" ng-click="ctrl.setCompanySector(sector)">{{sector.SectorName}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                    <label class="col-sm-3 account-company-details">Skills</label>
+                    <div class="col-sm-5 account-company-details">
+                        <input type="text" class="form-control account-company-details" placeholder="">
+                    </div>
+                </div>-->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <tag-manager tags="tags" ng-if="dataHasLoaded"> </tag-manager>
+                        </div>
+                    </div>
+
+                    <div class="row account-company-details-separator-row">
+                    </div>
+                    <div class="row">
+                        <p class="account-company-details-location">Location</p>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-3 account-company-details">Country</label>
+                        <div class="col-sm-5 account-company-details">
+                            <div class="dropdown-multiselect dropdown">
+                                <button class="btn btn-default dropdown-toggle account-company-details-sector-selection" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Please Choose <span class="pull-right"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                </button>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" name="Country">
+                                    <li ng-repeat="country in countries" class="inner_select">
+                                        <a href="javascript:void(0)" ng-click="setCompanyCountry(country.Name)">
+                                            {{country.Name}}
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="col-md-12 auto_scroll_tag">
+                                    <li ng-repeat="selcountry in SelectedCountries" class="tag">
+                                        {{selcountry}}
+                                        <a href="javascript:void(0)" ng-click="deleteCompanyCountry(selcountry)" class="close-box">
+                                            x
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--<select ng-model="SelectedCountries" multiple> <option  ng-repeat="country in countries">{{country.name}}</option>
+                </select>-->
+
+
+                    <div class="row account-company-details-separator-row">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button type="button" class="btn btn-default account-company-details-save" id="savebtn" ng-click="ctrl.updateMyCompanyProfile()"><span ng-show="ctrl.busy" class="glyphicon glyphicon-refresh spinning"></span>Save changes</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</main>
